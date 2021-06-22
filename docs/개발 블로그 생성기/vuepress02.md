@@ -153,7 +153,7 @@ git commit -m 'deploy with vuepress'
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f <clone 시 사용했던 github 주소> master:master
+git push -f <clone 시 사용했던 github 주소> master:gh-pages
 
 cd -
 ```
