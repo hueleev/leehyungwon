@@ -1,14 +1,11 @@
 module.exports = {
-    title: "title",
+    title: "leehyungwon",
     description: "desc",
     themeConfig: {
       nav: [{ text: "Github", link: "https://github.com/hueleev" }],
       sidebar: getSidebarArr()
     },
-    //가장 중요한 부분!
-    //<username>.github.io 뒤에 주소가 붙으시면
-    //아래와 같이 뒤 붙는 주소를 넣어주셔야합니다.
-    //안그러면 css 가 반영이 안되요!! 꼭꼭 넣어주세요
+    //<username>.github.io 뒤에 주소가 붙으시면 아래와 같이 ..
     base: "/leehyungwon/"
   };
   

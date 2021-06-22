@@ -10,7 +10,7 @@
 
 ---
 
-![vuepress](../.vuepress/public/img/vuepress/1.png)
+![vuepress](../.vuepress/public/img/vuepress/01/1.png)
 
 난 이미 있는 만든 블로그라 저렇게 빨간색이 뜨긴 하지만.. 저 이름이 나중에 블로그의 domain에 포함될 것이다.
 
@@ -56,7 +56,7 @@ echo # Hello VuePress > docs/README.md
 {
 	"scripts": {
 		"docs:dev": "vuepress dev docs",
-	  "docs:build": "vuerpress build docs"
+		"docs:build": "vuepress build docs"
 	}
 }
 ```
@@ -69,7 +69,7 @@ npm run docs:dev
 
 - [http://localhost:8080](http://localhost:8080) 접속 시, 아래와 같이 프로젝트가 뜨면 성공!
 
-![vuepress](../.vuepress/public/img/vuepress/2.png)
+![vuepress](../.vuepress/public/img/vuepress/01/2.png)
 
 ### 출처
 
