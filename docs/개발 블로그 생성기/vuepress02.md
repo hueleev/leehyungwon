@@ -1,4 +1,4 @@
-# [개발 블로그 생성기] 02. sidebar 생성 및 github page 올리기
+# [vuepress 개발 블로그 생성기] 02. sidebar 생성 및 github page 올리기
 
 먼저, side bar를 생성해주겠다.
 
@@ -114,7 +114,7 @@ git push -u origin master
 
 - 먼저, 깃헙에서 해당 프로젝트 setting에 들어간 후, pages를 클릭해준다.
 
-    필자는 master를 사용했지만, 추후에는 branch를 사용하는 걸 추천한다.
+    필자는 master를 사용했지만, gh-pages로 추후 수정하였고, gh-pages 브랜치를 만든 후, 사용하는 걸 추천한다.
 
     ![vuepress](../.vuepress/public/img/vuepress/02/2.png)
 
