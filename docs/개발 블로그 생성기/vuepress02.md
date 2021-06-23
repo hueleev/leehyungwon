@@ -10,7 +10,7 @@ npm run docs:build
 
 그럼 docs 하단에 .vuepress 폴더가 생성된다. 생성되지 않았을 경우, 우선 직접 생성해주자.
 
-- 다음 .vuepress 하단에 config.js 파일을 아래와 같이 만들어준다.
+- 다음 `.vuepress` 하단에 `config.js` 파일을 아래와 같이 만들어준다.
 
 ```jsx
 module.exports = {
@@ -122,7 +122,7 @@ git push -u origin master
 
 ---
 
-- package.json과 같은 depth에 deploly.sh을 만들고 아래 내용을 붙여넣는다.
+- `package.json`과 같은 depth에 `deploly.sh`을 만들고 아래 내용을 붙여넣는다.
 
     하단에 있는 github 주소에는 본인 정보를 넣어준다.
 
@@ -182,15 +182,16 @@ sh deploy.sh
 
 나의 초기 디렉토리 설정은 다음과 같다.
 
-.vuepress 하단에 public/img 에 이미지를 넣어준 후,
+`.vuepress` 하단에 `public/img` 에 이미지를 넣어준 후,
 
 ```bash
 ![vuepress](../.vuepress/public/img/vuepress/01/2.png)
 ```
 
 위와 같이 markdown에 경로를 잡아주면, 이미지가 뜨는 걸 확인할 수 있을 것이다.
+`dist` 하단에 경로를 잡을 경우, build 할 때 마다 clean되니, dist와 같은 depth에 폴더를 생성해주어야 한다.
 
-### 출처
+### Reference
 
 ---
 
