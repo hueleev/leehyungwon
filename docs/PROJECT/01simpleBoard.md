@@ -26,8 +26,6 @@ git 소스에는 프로젝트하려고 분리해놔서 좀 섞여있긴 함..
 
 ![vuepress](../.vuepress/public/img/project/01/1.png)
 
-![%E1%84%80%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A1%E1%86%AB%E1%84%92%E1%85%A1%E1%86%AB%20React%20%E1%84%86%E1%85%A6%E1%84%86%E1%85%A9%E1%84%8C%E1%85%A1%E1%86%BC%2093f6a07e19ef48269c10b989ed9acb36/Untitled.png](%E1%84%80%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A1%E1%86%AB%E1%84%92%E1%85%A1%E1%86%AB%20React%20%E1%84%86%E1%85%A6%E1%84%86%E1%85%A9%E1%84%8C%E1%85%A1%E1%86%BC%2093f6a07e19ef48269c10b989ed9acb36/Untitled.png)
-
 ### 조회 팝업
 
 ![vuepress](../.vuepress/public/img/project/01/2.png)
