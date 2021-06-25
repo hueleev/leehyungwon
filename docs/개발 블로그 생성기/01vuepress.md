@@ -6,9 +6,7 @@
 
 먼저, git repository를 생성해주자.
 
-### git repository 생성
-
----
+## git repository 생성
 
 ![vuepress](../.vuepress/public/img/vuepress/01/1.png)
 

@@ -5,6 +5,7 @@ module.exports = {
       nav: [{ text: "Github", link: "https://github.com/hueleev" }],
       sidebar: getSidebarArr()
     },
+    smoothScroll: true,
     //<username>.github.io 뒤에 주소가 붙으시면 아래와 같이 ..
     base: "/leehyungwon/"
   };

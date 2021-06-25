@@ -18,19 +18,15 @@ git 소스에는 프로젝트하려고 분리해놔서 좀 섞여있긴 함..
 
 [https://www.creative-tim.com/product/argon-design-system-react?ref=madewithreact](https://www.creative-tim.com/product/argon-design-system-react?ref=madewithreact)
 
-# Board (github page)
-
----
-
-### 목록 및 등록 화면
+## 목록 및 등록 화면
 
 ![vuepress](../.vuepress/public/img/project/01/1.png)
 
-### 조회 팝업
+## 조회 팝업
 
 ![vuepress](../.vuepress/public/img/project/01/2.png)
 
-### etc
+## etc
 
 → **validate/insert/delete 시, 상단에 toast 메세지도 뜬다!**
 
@@ -42,7 +38,7 @@ git 소스에는 프로젝트하려고 분리해놔서 좀 섞여있긴 함..
 
 [React App](https://hueleev.github.io/react-board/)
 
-# Git respository
+### Git respository
 
 ---
 

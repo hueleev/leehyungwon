@@ -1,26 +1,22 @@
-# 😃
+# 😃 DEV BLOG,
 
-# DEV BLOG,
-
----
-
-![avatar](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2bf1078b-7979-4290-81f7-f4a67d31535b/Untitled.png)
+<img src="./.vuepress/public/img/avatar.png" width="300" height="300" style="border-radius: 50%;">
 
 ### `author` leehyungwon
 
 ### `github` [https://github.com/hueleev](https://github.com/hueleev)
 
-## 💌 Contact
+<br/>
 
----
+## 💌 Contact
 
 ### `email` hueleev@gmail.com
 
 ### `linkedin` [https://www.linkedin.com/in/hyungwon-lee-1305a416a/](https://www.linkedin.com/in/hyungwon-lee-1305a416a/)
 
-## 🌏 SNS
+<br/>
 
----
+## 🌏 SNS
 
 ### `blog` [https://blog.naver.com/hue2music](https://blog.naver.com/hue2music)
 

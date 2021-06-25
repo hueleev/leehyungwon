@@ -86,9 +86,7 @@ module.exports = {
 
 이제, github page로 프로젝트를 본격적으로 올려보겠다.
 
-# git push
-
----
+## git push
 
 - vsc 터미널을 git bash로 우선 바꿔주자.
 
@@ -108,9 +106,7 @@ git push -u origin master
 
 명령어 입력 후, 깃헙에 들어가보면 소스가 올라온 걸 확인 할 수 있을 것이다.
 
-# github page 설정
-
----
+## github page 설정
 
 - 먼저, 깃헙에서 해당 프로젝트 setting에 들어간 후, pages를 클릭해준다.
 
@@ -118,9 +114,7 @@ git push -u origin master
 
     ![vuepress](../.vuepress/public/img/vuepress/02/2.png)
 
-# deploy 설정
-
----
+## deploy 설정
 
 - `package.json`과 같은 depth에 `deploly.sh`을 만들고 아래 내용을 붙여넣는다.
 
@@ -168,9 +162,7 @@ sh deploy.sh
 
 몇 분 후, [https://hueleev.github.io/leehyungwon](https://hueleev.github.io/leehyungwon/vuepress/vuepress01.html) 와 같은 경로를 입력하면, 프로젝트가 올라온 걸 확인할 수 있다!
 
-# tip
-
----
+## tip
 
 필자는 markdown파일을 notion으로 작성한 후, markdown으로 export해준다.
 
