@@ -4,7 +4,7 @@
 
 ---
 
-[image](https://avatars.githubusercontent.com/u/33610328?v=4)
+![avatar](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2bf1078b-7979-4290-81f7-f4a67d31535b/Untitled.png)
 
 ### `author` leehyungwon
 
