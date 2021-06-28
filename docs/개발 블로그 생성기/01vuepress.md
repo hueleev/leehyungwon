@@ -4,7 +4,7 @@
 
 이번에 vue도 배웠겠다, vuepress 를 활용해서 미루고 미루던 github page를 만들어보기 결심
 
-먼저, git repository를 생성해주자.
+📌 먼저, git repository를 생성해주자.
 
 ## git repository 생성
 
@@ -12,7 +12,7 @@
 
 난 이미 있는 만든 블로그라 저렇게 빨간색이 뜨긴 하지만.. 저 이름이 나중에 블로그의 domain에 포함될 것이다.
 
-cmd에서 원하는 디렉토리를 생성한 후에 클론을 해주자. 일단 아무것도 없으니 empty repository라고 뜰테고.. 디렉토리에는 `.git` 폴더가 생성되어 있을거다.
+📌 cmd에서 원하는 디렉토리를 생성한 후에 클론을 해주자. 일단 아무것도 없으니 empty repository라고 뜰테고.. 디렉토리에는 `.git` 폴더가 생성되어 있을거다.
 
 ```bash
 mkdir 디렉토리 && cd 디렉토리
@@ -22,7 +22,7 @@ mkdir 디렉토리 && cd 디렉토리
 git clone https://github.com/hueleev/leehyungwon.git
 ```
 
-이제 프로젝트를 vsc에서 열어주자 (cmd에서 디렉토리로 간 후, `code .` 를 하면 자동으로 vsc가 열린다.) vsc에서 터미널을 연 후, 아래와 같이 입력해준다.
+📌 이제 프로젝트를 vsc에서 열어주자 (cmd에서 디렉토리로 간 후, `code .` 를 하면 자동으로 vsc가 열린다.) vsc에서 터미널을 연 후, 아래와 같이 입력해준다.
 
 - package json 생성
 
@@ -36,9 +36,9 @@ npm init
 npm install -D vuepress
 ```
 
-자 이제 첫 게시글을 써보자!
+📌 자 이제 첫 게시글을 써보자!
 
-- `docs` 폴더를 `package.json`과 같은 depth에 생성해주고, markdown을 작성해보자.
+	`docs` 폴더를 `package.json`과 같은 depth에 생성해주고, markdown을 작성해보자.
 
 ```bash
 mkdir docs
@@ -48,7 +48,7 @@ mkdir docs
 echo # Hello VuePress > docs/README.md
 ```
 
-- package.json에 script를 아래와 같이 수정해주자.
+📌 package.json에 script를 아래와 같이 수정해주자.
 
 ```bash
 {
@@ -59,7 +59,7 @@ echo # Hello VuePress > docs/README.md
 }
 ```
 
-- 터미널에 아래 스크립트를 입력하여 로컬에 띄워보자.
+📌 터미널에 아래 스크립트를 입력하여 로컬에 띄워보자.
 
 ```bash
 npm run docs:dev

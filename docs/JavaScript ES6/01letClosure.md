@@ -36,7 +36,7 @@ for (var i=0; i<list.length; i++) {
 
 ### → console
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c8862071-2f2b-45d9-b257-c865e2bf0f5e/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c8862071-2f2b-45d9-b257-c865e2bf0f5e/Untitled.png)
+![vuepress](../.vuepress/public/img/javascriptEs6/01/0.png)
 
 밖에 있는 i를 참조하며 share하고 있기 때문에 이런 문제가 발생한다.
 
@@ -52,7 +52,7 @@ for (let i=0; i<list.length; i++) {
 }
 ```
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/412aa732-048e-47f8-bd4e-64cac401bd33/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/412aa732-048e-47f8-bd4e-64cac401bd33/Untitled.png)
+![vuepress](../.vuepress/public/img/javascriptEs6/01/1.png)
 
 es6가 출시되면서 let 으로 이 문제가 쉽게 해결된다.
 

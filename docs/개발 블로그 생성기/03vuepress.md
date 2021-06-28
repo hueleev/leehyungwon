@@ -2,7 +2,7 @@
 
 😇 vuepress 의 뻔한 레이아웃을 수정하기 위해..
 
-- package.json 에 아래 script를  추가해주자.
+📌 package.json 에 아래 script를  추가해주자.
 
 ```bash
 "scripts": {
