@@ -36,7 +36,7 @@ for (var i=0; i<list.length; i++) {
 
 ### → console
 
-![vuepress](../.vuepress/public/img/javascriptEs6/01/0.png)
+![vuepress](../.vuepress/public/img/javascriptEs6/01/1.png)
 
 밖에 있는 i를 참조하며 share하고 있기 때문에 이런 문제가 발생한다.
 
@@ -52,7 +52,7 @@ for (let i=0; i<list.length; i++) {
 }
 ```
 
-![vuepress](../.vuepress/public/img/javascriptEs6/01/1.png)
+![vuepress](../.vuepress/public/img/javascriptEs6/01/0.png)
 
 es6가 출시되면서 let 으로 이 문제가 쉽게 해결된다.
 
