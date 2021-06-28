@@ -56,7 +56,7 @@ for (let i=0; i<list.length; i++) {
 
 es6가 출시되면서 let 으로 이 문제가 쉽게 해결된다.
 
-`**var`를 `let`으로 변경하기만 하면 끝!**
+**`var`를 `let`으로 변경하기만 하면 끝!**
 
 ### Reference
 

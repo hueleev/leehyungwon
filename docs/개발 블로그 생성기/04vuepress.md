@@ -1,6 +1,6 @@
 # 04. Github Action 적용하기
 
-♥️ 이전까지는 `deploy.sh`을 실행시켜 블로그를 배포했다면, github Action 을 활용하여 소스를 push 할때마다 자동 배포가 되도록 해보겠다. 
+🍕 이전까지는 `deploy.sh`을 실행시켜 블로그를 배포했다면, github Action 을 활용하여 소스를 push 할때마다 자동 배포가 되도록 해보겠다. 
 
 ## workflow 생성
 
@@ -61,7 +61,7 @@ jobs:
 
 ![vuepress](../.vuepress/public/img/vuepress/04/2.png)
 
-이때, 저는 script에 build 명령어가 `docs:build` 여서 저렇게 입력한거고, 각자 정해놓은 script를 적어주면 된다.
+이때, 내 프로젝트는 script에 build 명령어가 `docs:build` 여서 저렇게 입력한거고, 각자 정해놓은 script를 적어주면 된다.
 
 ## ACCESS_TOKEN 생성
 
