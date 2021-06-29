@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs:dev": "vuepress dev docs",
 	  "docs:build": "vuepress build docs",
-    **"docs:eject": "vuepress eject"** // 추가된 script
+    "docs:eject": "vuepress eject" // 추가된 script
   },
 ```
 

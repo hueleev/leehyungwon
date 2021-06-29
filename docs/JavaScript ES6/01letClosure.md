@@ -52,6 +52,8 @@ for (let i=0; i<list.length; i++) {
 }
 ```
 
+### → console
+
 ![vuepress](../.vuepress/public/img/javascriptEs6/01/0.png)
 
 es6가 출시되면서 let 으로 이 문제가 쉽게 해결된다.

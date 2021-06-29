@@ -1,6 +1,7 @@
 module.exports = {
     title: "leehyungwon",
-    description: "desc",
+    description: "leehyungwon 개발블로그 입니다.",
+    plugins: [["sitemap", { hostname: "https://hueleev.github.io/leehyungwon/" }]],
     themeConfig: {
       nav: [{ text: "Github", link: "https://github.com/hueleev" }],
       sidebar: getSidebarArr()
