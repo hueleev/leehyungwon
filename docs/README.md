@@ -1,3 +1,9 @@
+---
+meta:
+    - name: google-site-verification
+      content: QGOhGD99HvCUXbDTSPep9FTwqTHWFfm8b86-gbvssJQ
+---
+
 # 😃 DEV BLOG,
 
 <img src="./.vuepress/public/img/avatar.png" width="300" height="300" style="border-radius: 50%;">
