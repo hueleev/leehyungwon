@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/hueleev/leehyungwon#readme",
   "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.8.2",
+    "@vuepress/plugin-last-updated": "^1.8.2",
     "vuepress": "^1.8.2",
     "vuepress-plugin-sitemap": "^2.3.1"
   }
