@@ -1,10 +1,28 @@
 module.exports = {
     title: "leehyungwon",
     description: "leehyungwon 개발블로그 입니다.",
+    head: [
+      ['meta', { name: 'google-site-verification', content: 'QGOhGD99HvCUXbDTSPep9FTwqTHWFfm8b86-gbvssJQ' }],
+      ['script', { async: true, src: 'https://www.googletagmanager.com/gtag/js?id=G-N92EJN2ZMZ' }],
+      [
+        'script',
+        {},
+        `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-N92EJN2ZMZ');
+      `],
+    ],
     plugins: [
       ["@vuepress/back-to-top"],
       ["@vuepress/last-updated"],
-      ["sitemap", { hostname: "https://hueleev.github.io/leehyungwon/" }]
+      ['@vuepress/pwa', {
+        serviceWorker: true,
+        updatePopup: true
+      }],
+      ["vuepress-plugin-sitemap", { hostname: "https://hueleev.github.io/leehyungwon/" }]
     ],
     themeConfig: {
       nav: [{ text: "Github", link: "https://github.com/hueleev" }],

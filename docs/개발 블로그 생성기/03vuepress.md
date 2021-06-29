@@ -58,6 +58,42 @@ $MQNarrow = 959px
 $MQMobile = 719px
 $MQMobileNarrow = 419px
 ```
+## plugin-back-to-top
+
+📌 **추가 시, 어느 정도 글이 내려가면 오른 쪽 하단에 상단으로 올라가는 버튼이 생성된다.**
+
+```bash
+npm install -D @vuepress/plugin-back-to-top
+```
+
+📌 **사용**
+
+```jsx
+// .vuepress/config.js
+module.export = {
+  plugins: ["@vuepress/back-to-top"]
+};
+```
+
+## last-updated
+
+📌 **추가 시, 게시글의 맨 끝에 마지막 수정일이 기재된다.**
+
+```bash
+npm install -D @vuepress/plugin-last-updated
+```
+
+📌 **사용**
+
+```jsx
+// .vuepress/config.js
+module.export = {
+plugins: [
+    ["@vuepress/back-to-top"],
+    ["@vuepress/last-updated"],
+  ]
+}
+```
 
 ### Reference
 
@@ -66,3 +102,5 @@ $MQMobileNarrow = 419px
 [https://vuepress.vuejs.org/theme/](https://vuepress.vuejs.org/theme/)
 
 [https://vuepress.vuejs.org/theme/writing-a-theme.html#directory-structure](https://vuepress.vuejs.org/theme/writing-a-theme.html#directory-structure)
+
+[https://kyounghwan01.github.io/blog/Vue/vuepress/vuepress-plugin/#plugin-back-to-top](https://kyounghwan01.github.io/blog/Vue/vuepress/vuepress-plugin/#plugin-back-to-top)
