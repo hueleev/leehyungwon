@@ -2,7 +2,7 @@
 
 😇 vuepress 의 뻔한 레이아웃을 수정하기 위해..
 
-📌 package.json 에 아래 script를  추가해주자.
+📌 **package.json 에 아래 script를  추가해주자.**
 
 ```bash
 "scripts": {
@@ -24,7 +24,7 @@ npm run doc:eject
 ## index.styl
 
 
-`.vuepress/theme/styles/index.styl` 파일을 생성해준다.
+**`.vuepress/theme/styles/index.styl` 파일을 생성해준다.**
 
 ```css
 .content {
@@ -34,7 +34,7 @@ npm run doc:eject
 
 ## palette.styl
 
-`.vuepress/theme/styles/palette.styl` 파일을 생성해준다.
+**`.vuepress/theme/styles/palette.styl` 파일을 생성해준다.**
 
 ```bash
 // colors
@@ -66,6 +66,8 @@ $MQMobileNarrow = 419px
 npm install -D @vuepress/plugin-back-to-top
 ```
 
+<br/>
+
 📌 **사용**
 
 ```jsx
@@ -82,6 +84,8 @@ module.export = {
 ```bash
 npm install -D @vuepress/plugin-last-updated
 ```
+
+<br/>
 
 📌 **사용**
 

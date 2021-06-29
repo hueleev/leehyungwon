@@ -16,11 +16,15 @@
 
 :::
 
+<br/>
+
 📌 **설치, vsc 터미널에 아래 코드를 입력**
 
 ```bash
 npm install -D vuepress-plugin-sitemap
 ```
+
+<br/>
 
 📌 **사용, hostname 에 블로그 url을 넣어준다.**
 
@@ -30,6 +34,8 @@ module.export = {
   plugins: [["sitemap", { hostname: "https://hueleev.github.io/leehyungwon/" }]]
 };
 ```
+
+<br/>
 
 📌 **배포 이후, 구글 서치 콘솔에 가서 sitemap 제출란에 `[https://hueleev.github.io/leehyungwon/sitemap.xml](https://hueleev.github.io/leehyungwon/sitemap.xml)` 로 등록하면 된다.**
 
@@ -52,6 +58,8 @@ Sitemap: https://kyounghwan01.github.io/blog/sitemap.xml
 **속성을 생성해준 후, 데이터 스트림을 클릭한다.**
 
 ![vuepress](../.vuepress/public/img/vuepress/05/0.png)
+
+<br/>
 
 📌 **하단에 태그 사용을 참조하여,  `config.js` 에 아래와 같이 입력해주면 끝!**
 
@@ -80,9 +88,13 @@ head: [
 
 [https://search.google.com/search-console](https://search.google.com/search-console)
 
+<br/>
+
 📌 **속성을 추가 해준다.  본인의 github 블로그 url을 입력해준다.**
 
 ![vuepress](../.vuepress/public/img/vuepress/05/1.png)
+
+<br/>
 
 📌 **서치콘솔에서 HTML 태그를 선택하여 meta태그를 블로그 첫 화면 `[README.md](http://readme.md)` 에 넣어주었다**
 
@@ -97,11 +109,15 @@ meta:
 ---
 ```
 
+<br/>
+
 📌 **배포 후, 사이트 메인에서 개발자도구를 열어 확인해주면,**
 
 ![vuepress](../.vuepress/public/img/vuepress/05/3.png)
 
 **위와 같이 메타 태그가 들어간 것을 확인할 수 있다 !**
+
+<br/>
 
 📌 **확인해주면, 아래와 같이 소유권이 확인된다.**
 

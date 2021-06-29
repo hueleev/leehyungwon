@@ -1,8 +1,8 @@
 # 01. let & closure (for문 변수가 왜 바뀌지 않을까?)
 
-경험해본적은 없지만, for문 내에서 버튼을 생성할 때 변수가 왜 바뀌지 않나 궁금하신 분들이 참조하면 좋을 거 같다.
+🔥 **경험해본적은 없지만, for문 내에서 버튼을 생성할 때 변수가 왜 바뀌지 않나 궁금하신 분들이 참조하면 좋을 거 같다.**
 
-## HTML
+## ✨ HTML
 
 ```html
 <!DOCTYPE html>
@@ -23,7 +23,7 @@
 </html>
 ```
 
-## var 사용
+## ✨ var 사용
 
 ```jsx
 var list = document.querySelectorAll("li");
@@ -34,14 +34,20 @@ for (var i=0; i<list.length; i++) {
 }
 ```
 
-### → console
+### 🔎 console
 
-![vuepress](../.vuepress/public/img/javascriptEs6/01/1.png)
+---
 
-밖에 있는 i를 참조하며 share하고 있기 때문에 이런 문제가 발생한다.
+```basic
+"4번째 리스트 입니다."
+"4번째 리스트 입니다."
+"4번째 리스트 입니다."
+"4번째 리스트 입니다."
+```
 
-## let 사용
+**밖에 있는 i를 참조하며 share하고 있기 때문에 이런 문제가 발생한다.**
 
+## ✨ let 사용
 
 ```jsx
 var list = document.querySelectorAll("li");
@@ -52,11 +58,18 @@ for (let i=0; i<list.length; i++) {
 }
 ```
 
-### → console
+### 🔎 console
 
-![vuepress](../.vuepress/public/img/javascriptEs6/01/0.png)
+---
 
-es6가 출시되면서 let 으로 이 문제가 쉽게 해결된다.
+```basic
+"0번째 리스트 입니다."
+"1번째 리스트 입니다."
+"2번째 리스트 입니다."
+"3번째 리스트 입니다."
+```
+
+**es6가 출시되면서 let 으로 이 문제가 쉽게 해결된다.**
 
 **`var`를 `let`으로 변경하기만 하면 끝!**
 

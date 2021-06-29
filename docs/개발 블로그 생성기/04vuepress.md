@@ -4,17 +4,21 @@
 
 ## workflow 생성
 
-📌 먼저, workflow 파일을 생성해주자.
+📌 **먼저, workflow 파일을 생성해주자.**
 
 원하는 디렉토리 로 이동해 `Actions`로 이동해, `New workflow` 클릭해주자!
 
 ![vuepress](../.vuepress/public/img/vuepress/04/0.png)
 
-📌 그 다음에 `Set up this workflow`를 선택해주자.
+<br/>
+
+📌 **그 다음에 `Set up this workflow`를 선택해주자.**
 
 ![vuepress](../.vuepress/public/img/vuepress/04/1.png)
 
-📌 다음 아래 소스를 입력한다.
+<br/>
+
+📌 **다음 아래 소스를 입력한다.**
 
 ```css
 # This is a basic workflow to help you get started with Actions
@@ -65,37 +69,45 @@ jobs:
 
 ## ACCESS_TOKEN 생성
 
-📌 다음, 프로필 `settings` > `Developer Settings` 로 이동해주자.
+📌 **다음, 프로필 `settings` > `Developer Settings` 로 이동해주자.**
 
 ![vuepress](../.vuepress/public/img/vuepress/04/3.png)
 
-📌 다음 `Personal access tokens` > `Generate new token` 으로 이동해주자.
+<br/>
 
-!![vuepress](../.vuepress/public/img/vuepress/04/4.png)
+📌 **다음 `Personal access tokens` > `Generate new token` 으로 이동해주자.**
 
-📌 토큰이 보이지 않을 경우, `Regenerate token` 을 생성 후 복사해준다.
+![vuepress](../.vuepress/public/img/vuepress/04/4.png)
+
+<br/>
+
+📌 **토큰이 보이지 않을 경우, `Regenerate token` 을 생성 후 복사해준다.**
 
 ![vuepress](../.vuepress/public/img/vuepress/04/5.png)
 
-📌 다음, 다시 respository `settings` 로 이동 후, `secrets` 로 이동해준다.
+<br/>
 
-`New repository token` 을 클릭하고, 
+📌 **다음, 다시 respository `settings` 로 이동 후, `secrets` 로 이동해준다.**
+
+  **`New repository token` 을 클릭하고,**
 
 ![vuepress](../.vuepress/public/img/vuepress/04/6.png)
 
-`Name` 은 `ACCESS_TOKEN` , `value` 는 이전에 복사한 토큰을 입력한 후, `Add secret`을 클릭해준다.
+  **`Name` 은 `ACCESS_TOKEN` , `value` 는 이전에 복사한 토큰을 입력한 후, `Add secret`을 클릭해준다.**
 
 ![vuepress](../.vuepress/public/img/vuepress/04/7.png)
 
 ## build and deploy
 
-📌 vsc 터미널에서 `git pull` 명령어를 입력하여, yaml 파일을 받아온다.
+📌 **vsc 터미널에서 `git pull` 명령어를 입력하여, yaml 파일을 받아온다.**
 
 ```bash
 git pull
 ```
 
-📌 이제부터 `master` 에 `push`할때마다 블로그가 바로 배포되는 것을 확인할 수 있다.
+<br/>
+
+📌 **이제부터 `master` 에 `push`할때마다 블로그가 바로 배포되는 것을 확인할 수 있다.**
 
 해당 repository 에 Actions 에서 상태를 확인할 수 있다.
 

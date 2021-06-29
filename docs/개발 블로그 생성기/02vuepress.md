@@ -2,7 +2,7 @@
 
 ✍🏻 먼저, side bar를 생성해주겠다.
 
-📌 vsc 터미널에서 프로젝트를 빌드해주자.
+📌 **vsc 터미널에서 프로젝트를 빌드해주자.**
 
 ```bash
 npm run docs:build
@@ -10,7 +10,9 @@ npm run docs:build
 
 그럼 docs 하단에 .vuepress 폴더가 생성된다. 생성되지 않았을 경우, 우선 직접 생성해주자.
 
-📌 다음 `.vuepress` 하단에 `config.js` 파일을 아래와 같이 만들어준다.
+<br/>
+
+📌 **다음 `.vuepress` 하단에 `config.js` 파일을 아래와 같이 만들어준다.**
 
 ```jsx
 module.exports = {
@@ -88,7 +90,7 @@ module.exports = {
 
 ## git push
 
-📌 vsc 터미널을 git bash로 우선 바꿔주자.
+📌 **vsc 터미널을 git bash로 우선 바꿔주자.**
 
 ![vuepress](../.vuepress/public/img/vuepress/02/1.png)
 
@@ -108,17 +110,17 @@ git push -u origin master
 
 ## github page 설정
 
-📌 먼저, 깃헙에서 해당 프로젝트 setting에 들어간 후, pages를 클릭해준다.
+📌 **먼저, 깃헙에서 해당 프로젝트 setting에 들어간 후, pages를 클릭해준다.**
 
-    필자는 master를 사용했지만, gh-pages로 추후 수정하였고, gh-pages 브랜치를 만든 후, 사용하는 걸 추천한다.
+> 필자는 master를 사용했지만, gh-pages로 추후 수정하였고, gh-pages 브랜치를 만든 후, 사용하는 걸 추천한다.
 
-    ![vuepress](../.vuepress/public/img/vuepress/02/2.png)
+![vuepress](../.vuepress/public/img/vuepress/02/2.png)
 
 ## deploy 설정
 
-📌 `package.json`과 같은 depth에 `deploly.sh`을 만들고 아래 내용을 붙여넣는다.
+📌 **`package.json`과 같은 depth에 `deploly.sh`을 만들고 아래 내용을 붙여넣는다.**
 
-    하단에 있는 github 주소에는 본인 정보를 넣어준다.
+> 하단에 있는 github 주소에는 본인 정보를 넣어준다.
 
 ```bash
 #!/usr/bin/env sh
@@ -152,9 +154,7 @@ git push -f <clone 시 사용했던 github 주소> master:gh-pages
 cd -
 ```
 
-📌 vsc 터미널에서 git bash를 선택 후, 아래 명령어를 입력해주자.
-
-    (윈도우 cmd에서는 sh는 동작하지 않으므로)
+📌 **vsc 터미널에서 git bash를 선택 후, 아래 명령어를 입력해주자. (윈도우 cmd에서는 sh는 동작하지 않으므로)**
 
 ```bash
 sh deploy.sh
