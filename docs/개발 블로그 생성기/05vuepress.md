@@ -37,9 +37,14 @@ npm install -D vuepress-plugin-sitemap
 
 📌 **사용, hostname 에 블로그 url을 넣어준다.**
 :::tip
-💎 **이때, 아무리 해도 sitemap 파일이 생기지 않아 구글링하여 dateFormatter를 넣어주었더니 빌드 성공!**
-💎 **그리고 plugins에서 가장 위에 써줘야 경로를 제대로 확인할 수 있었다...ㅠㅠ 이거때문에 계속 에러남.. 뭔가 다른 플러그인이랑 꼬이는거 같다**
-💎 **배포 후, {blog_url}/sitemap.xml이 잘 뜨는 지 확인필수 !**
+💎 **아무리 해도 sitemap.xml이 생기지 않아 dateFormatter를 넣어주었더니 빌드 성공!** 
+<br/>
+💎 **그리고 plugins에서 가장 위에 써줘야 경로를 제대로 확인할 수 있었다...ㅠㅠ**
+<br/>
+>**이거때문에 계속 에러남.. 뭔가 다른 플러그인이랑 꼬이는거 같다**
+<br/>
+
+💎 **배포 후, {blog_url}/sitemap.xml이 잘 뜨는지 확인필수 !**
 :::
 ```bash
 // .vuepress/config.js
@@ -47,7 +52,7 @@ module.export = {
   plugins: [
     ["sitemap",
       {
-        hostname: "https://hueleev.github.io/leehyungwon/",
+        hostname: "https://hueleev.github.io/leehyungwon",
         dateFormatter: val => {  // 이부분을 넣어줬더니 빌드가 제대로 됐다.
           return new Date().toISOString()
         }
@@ -59,7 +64,7 @@ module.export = {
 
 <br/>
 
-📌 **배포 이후, 구글 서치 콘솔에 가서 sitemap 제출란에 `[https://hueleev.github.io/leehyungwon/sitemap.xml](https://hueleev.github.io/leehyungwon/sitemap.xml)` 로 등록하면 된다.**
+📌 **배포 이후, 구글 서치 콘솔에 가서 sitemap 제출란에 `https://hueleev.github.io/leehyungwon/sitemap.xml` 로 등록하면 된다.**
 
 ## Robots.txt
 
@@ -101,50 +106,6 @@ head: [
       `],
     ],
 ```
-## meta
-
----
-
-**📌 메타 태그만 잘 관리하여도 유리하다고 하여 이것도 한번 적용해보겠다.**
-
-```basic
-<html lang="en-US">
-  ...
-  <title>{게시물 타이틀} | {블로그 title}</title>
-  <meta name="description" content="{블로그 description}">
-  ...
-```
-
-블로그 `title`과 `description`은 `config.js`에서 수정할 수 있다.
-
-또한 모든 페이지 `<head>`에 꼭 넣고 싶은게 있다면 아래 `head` 에 넣어주어도 괜찮다.
-
-나와 같은 경우는 `google search console` 관련한 값을 넣어주었다.
-
-```jsx
-// .vuepress/config.js
-module.exports = {
-    title: "leehyungwon",
-    description: "leehyungwon 개발블로그 입니다.",
-    head: [
-			['meta', { name: 'google-site-verification', content: '구글서치콘솔값' }],
-		]
-}
-```
-
-📌 **다음 모든 게시물에 아래와 같이 자세하게 `meta` 태그를 걸어주면 검색에 유리!**
-
-```jsx
----
-title: 검색엔진 SEO 최적화
-lang: ko-KR
-meta:
-  - name: description
-    content: SEO를 알아보고 VuePress에 적용하자.
-  - name: keywords
-    content: SEO 검색 엔진 최적화
----
-```
 
 ## meta
 
@@ -164,7 +125,7 @@ meta:
 
 또한 모든 페이지 `<head>`에 꼭 넣고 싶은게 있다면 아래 `head` 에 넣어주어도 괜찮다.
 
-나와 같은 경우는 `google search console` 관련한 값을 넣어주었다.
+난 `google search console` 관련한 값을 혹시 몰라 모든 페이지에 넣어줘봤다.
 
 <br/>
 
@@ -194,20 +155,6 @@ meta:
     content: SEO 검색 엔진 최적화
 ---
 ```
-<br/>
-
-📌 **국가코드는 페이지별로 설정할 필요 없으니 `config.js` 에서 설정해주도록 하자.**
-
-```jsx
-// .vuepress/config.js
-module.exports = {
-  ...
-  locales: {
-    '/': { lang: 'ko-KR' }
-  },
-  ...
-```
-
 <br/>
 
 📌 **국가코드는 페이지별로 설정할 필요 없으니 `config.js` 에서 설정해주도록 하자.**
@@ -265,7 +212,7 @@ meta:
 
 ![vuepress](../.vuepress/public/img/vuepress/05/4.png)
 
-나는 혹시 몰라서, `@vuepress/plugin-pwa` 를 사용하여 전체 페이지에 meta 태그를 걸어주었다.
+나는 혹시 몰라서, `config.js`에 `head`를 사용하여 전체 페이지에 meta 태그를 걸어주었다.
 
 [https://vuepress.vuejs.org/plugin/official/plugin-pwa.html#install](https://vuepress.vuejs.org/plugin/official/plugin-pwa.html#install)
 
