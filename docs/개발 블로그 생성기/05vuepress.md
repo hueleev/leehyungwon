@@ -36,7 +36,11 @@ npm install -D vuepress-plugin-sitemap
 <br/>
 
 📌 **사용, hostname 에 블로그 url을 넣어준다.**
+:::tip
 💎 **이때, 아무리 해도 sitemap 파일이 생기지 않아 구글링하여 dateFormatter를 넣어주었더니 빌드 성공!**
+💎 **그리고 plugins에서 가장 위에 써줘야 경로를 제대로 확인할 수 있었다...ㅠㅠ 이거때문에 계속 에러남.. 뭔가 다른 플러그인이랑 꼬이는거 같다**
+💎 **배포 후, {blog_url}/sitemap.xml이 잘 뜨는 지 확인필수 !**
+:::
 ```bash
 // .vuepress/config.js
 module.export = {
