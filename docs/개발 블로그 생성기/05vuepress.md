@@ -123,9 +123,9 @@ head: [
 
 블로그 `title`과 `description`은 `config.js`에서 수정할 수 있다.
 
-또한 모든 페이지 `<head>`에 꼭 넣고 싶은게 있다면 아래 `head` 에 넣어주어도 괜찮다.
+또한 모든 페이지 `<head>`에 꼭 넣고 싶은게 있다면 아래와 같이 넣어주면 된다.
 
-난 `google search console` 관련한 값을 혹시 몰라 모든 페이지에 넣어줘봤다.
+예를 들면, `구글 애드센스`를 활용하는 경우?
 
 <br/>
 
@@ -135,7 +135,7 @@ module.exports = {
     title: "leehyungwon",
     description: "leehyungwon 개발블로그 입니다.",
     head: [
-			['meta', { name: 'google-site-verification', content: '구글서치콘솔값' }],
+      ['script', { "data-ad-client": "ca-pub-XXXXX", async: true, src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' }],
 		]
 }
 ```
@@ -211,10 +211,6 @@ meta:
 📌 **확인해주면, 아래와 같이 소유권이 확인된다.**
 
 ![vuepress](../.vuepress/public/img/vuepress/05/4.png)
-
-나는 혹시 몰라서, `config.js`에 `head`를 사용하여 전체 페이지에 meta 태그를 걸어주었다.
-
-[https://vuepress.vuejs.org/plugin/official/plugin-pwa.html#install](https://vuepress.vuejs.org/plugin/official/plugin-pwa.html#install)
 
 ### Reference
 
