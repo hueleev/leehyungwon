@@ -26,7 +26,14 @@ module.exports = {
         serviceWorker: true,
         updatePopup: true
       }],
-      ["sitemap", { hostname: "https://hueleev.github.io/leehyungwon/" }]
+      ["sitemap", 
+        { 
+          hostname: "https://hueleev.github.io/leehyungwon/",
+          dateFormatter: val => {
+            return new Date().toISOString()
+          }
+        }
+      ]
     ],
     themeConfig: {
       nav: [{ text: "Github", link: "https://github.com/hueleev" }],

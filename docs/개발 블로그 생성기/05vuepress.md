@@ -36,11 +36,20 @@ npm install -D vuepress-plugin-sitemap
 <br/>
 
 📌 **사용, hostname 에 블로그 url을 넣어준다.**
-
+💎 **이때, 아무리 해도 sitemap 파일이 생기지 않아 구글링하여 dateFormatter를 넣어주었더니 빌드 성공!**
 ```bash
 // .vuepress/config.js
 module.export = {
-  plugins: [["sitemap", { hostname: "https://hueleev.github.io/leehyungwon/" }]]
+  plugins: [
+    ["sitemap",
+      {
+        hostname: "https://hueleev.github.io/leehyungwon/",
+        dateFormatter: val => {  // 이부분을 넣어주지 않으니 빌드가 제대로 됐다.
+          return new Date().toISOString()
+        }
+      }
+    ]
+  ]
 };
 ```
 
