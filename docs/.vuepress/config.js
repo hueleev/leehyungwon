@@ -28,7 +28,7 @@ module.exports = {
       }],
       ["sitemap", 
         { 
-          hostname: "https://hueleev.github.io/leehyungwon/",
+          hostname: "https://hueleev.github.io/leehyungwon/sitemap.xml",
           dateFormatter: val => {
             return new Date().toISOString()
           }

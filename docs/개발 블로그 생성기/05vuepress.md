@@ -44,7 +44,7 @@ module.export = {
     ["sitemap",
       {
         hostname: "https://hueleev.github.io/leehyungwon/",
-        dateFormatter: val => {  // 이부분을 넣어주지 않으니 빌드가 제대로 됐다.
+        dateFormatter: val => {  // 이부분을 넣어줬더니 빌드가 제대로 됐다.
           return new Date().toISOString()
         }
       }
