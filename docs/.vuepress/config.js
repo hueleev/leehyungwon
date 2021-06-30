@@ -20,14 +20,9 @@ module.exports = {
       `],
     ],
     plugins: [
-      ["@vuepress/back-to-top"],
-      ['@vuepress/pwa', {
-        serviceWorker: true,
-        updatePopup: true
-      }],
       ["sitemap", 
         { 
-          hostname: "https://hueleev.github.io/leehyungwon/",
+          hostname: "https://hueleev.github.io/leehyungwon",
           dateFormatter: val => {
             return new Date().toISOString()
           }
