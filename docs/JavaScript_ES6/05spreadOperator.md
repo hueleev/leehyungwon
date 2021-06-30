@@ -1,8 +1,8 @@
 ---
-title: spread operator, 펼침연산자
+title: 05. spread operator, 펼침연산자
 meta:
   - name: description
-    content: javascript ES6 
+    content: javascript ES6 spread opreator
   - name: keywords
     content: javascript ES6 
 ---

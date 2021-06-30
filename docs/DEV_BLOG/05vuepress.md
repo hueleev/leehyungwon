@@ -1,5 +1,5 @@
 ---
-title: 검색엔진 SEO 최적화
+title: 05. 검색엔진 SEO 최적화
 meta:
   - name: description
     content: SEO를 알아보고 VuePress에 적용하자.

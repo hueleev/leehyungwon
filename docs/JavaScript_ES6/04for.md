@@ -1,8 +1,8 @@
 ---
-title: for문의 종류 (javaScript)
+title: 04. for문의 종류 (javaScript)
 meta:
   - name: description
-    content: javascript ES6 
+    content: javascript ES6 for
   - name: keywords
     content: javascript ES6 
 ---

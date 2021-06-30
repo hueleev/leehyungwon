@@ -1,8 +1,8 @@
 ---
-title: let & closure (for문 변수가 왜 바뀌지 않을까?)
+title: 01. let & closure (for문 변수가 왜 바뀌지 않을까?)
 meta:
   - name: description
-    content: javascript ES6 
+    content: javascript ES6 let closure
   - name: keywords
     content: javascript ES6 
 ---

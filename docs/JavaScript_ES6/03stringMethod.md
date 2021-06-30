@@ -1,5 +1,5 @@
 ---
-title: ES2015 String 새로운 메소드
+title: 03. ES2015 String 새로운 메소드
 meta:
   - name: description
     content: javascript ES6 

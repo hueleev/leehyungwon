@@ -1,5 +1,5 @@
 ---
-title: Github Action 적용하기
+title: 04. Github Action 적용하기
 meta:
   - name: description
     content: vuepress에 Github Adtion을 적용하자

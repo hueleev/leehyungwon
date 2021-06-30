@@ -1,5 +1,5 @@
 ---
-title: vuepress style 적용하기
+title: 03. vuepress style 적용하기
 meta:
   - name: description
     content: vuepress style을 적용해보자

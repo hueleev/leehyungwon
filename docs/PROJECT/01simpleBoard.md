@@ -1,3 +1,12 @@
+---
+title: 01. 간단한 React 메모장 (with react-persist)
+meta:
+  - name: description
+    content: React 와 Redux를 활용하여 게시판을 만들어보다
+  - name: keywords
+    content: React Redux react-persist 
+---
+
 # 01. 간단한 React 메모장 (with react-persist)
 
 원래 `vueJS`보다 `react` 쪽에 더 관심이 가서 react로 프로젝트를 하나 해볼까 했는데..

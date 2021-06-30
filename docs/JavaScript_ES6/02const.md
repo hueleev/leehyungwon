@@ -1,8 +1,8 @@
 ---
-title: const 특성과 immutable array
+title: 02. const 특성과 immutable array
 meta:
   - name: description
-    content: javascript ES6 
+    content: javascript ES6 const immutable array
   - name: keywords
     content: javascript ES6 
 ---
