@@ -1,6 +1,9 @@
 module.exports = {
     title: "leehyungwon",
     description: "leehyungwon 개발블로그 입니다.",
+    locales: {
+      '/': { lang: 'ko-KR' }
+    },
     head: [
       ['meta', { name: 'google-site-verification', content: 'QGOhGD99HvCUXbDTSPep9FTwqTHWFfm8b86-gbvssJQ' }],
       ['script', { "data-ad-client": "ca-pub-5531898421123312", async: true, src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' }],
@@ -23,7 +26,7 @@ module.exports = {
         serviceWorker: true,
         updatePopup: true
       }],
-      ["vuepress-plugin-sitemap", { hostname: "https://hueleev.github.io/leehyungwon/" }]
+      ["sitemap", { hostname: "https://hueleev.github.io/leehyungwon/" }]
     ],
     themeConfig: {
       nav: [{ text: "Github", link: "https://github.com/hueleev" }],

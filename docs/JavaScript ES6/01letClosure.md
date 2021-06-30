@@ -1,3 +1,12 @@
+---
+title: let & closure (for문 변수가 왜 바뀌지 않을까?)
+meta:
+  - name: description
+    content: javascript ES6 
+  - name: keywords
+    content: javascript ES6 
+---
+
 # 01. let & closure (for문 변수가 왜 바뀌지 않을까?)
 
 🔥 **경험해본적은 없지만, for문 내에서 버튼을 생성할 때 변수가 왜 바뀌지 않나 궁금하신 분들이 참조하면 좋을 거 같다.**

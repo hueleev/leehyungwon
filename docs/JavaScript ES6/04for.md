@@ -1,3 +1,12 @@
+---
+title: for문의 종류 (javaScript)
+meta:
+  - name: description
+    content: javascript ES6 
+  - name: keywords
+    content: javascript ES6 
+---
+
 # 04. for문의 종류 (javaScript)
 
 🙄 **다양한 for문에 대해서 알아보자.**

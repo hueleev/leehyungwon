@@ -1,3 +1,12 @@
+---
+title: sidebar 생성 및 github page 올리기
+meta:
+  - name: description
+    content: vuepress를 github page 에 적용해보자
+  - name: keywords
+    content: vuepress 개발블로그 github page
+---
+
 # 02. sidebar 생성 및 github page 올리기
 
 ✍🏻 먼저, side bar를 생성해주겠다.

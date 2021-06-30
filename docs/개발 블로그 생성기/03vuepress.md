@@ -1,3 +1,12 @@
+---
+title: vuepress style 적용하기
+meta:
+  - name: description
+    content: vuepress style을 적용해보자
+  - name: keywords
+    content: vuepress 개발블로그 style palette
+---
+
 # 03. vuepress style 적용하기
 
 😇 vuepress 의 뻔한 레이아웃을 수정하기 위해..

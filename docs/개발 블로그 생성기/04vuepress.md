@@ -1,3 +1,12 @@
+---
+title: Github Action 적용하기
+meta:
+  - name: description
+    content: vuepress에 Github Adtion을 적용하자
+  - name: keywords
+    content: vuepress 개발블로그 github Action
+---
+
 # 04. Github Action 적용하기
 
 🍕 이전까지는 `deploy.sh`을 실행시켜 블로그를 배포했다면, github Action 을 활용하여 소스를 push 할때마다 자동 배포가 되도록 해보겠다. 

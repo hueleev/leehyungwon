@@ -1,3 +1,12 @@
+---
+title: 검색엔진 SEO 최적화
+meta:
+  - name: description
+    content: SEO를 알아보고 VuePress에 적용하자.
+  - name: keywords
+    content: SEO 검색 엔진 최적화
+---
+
 # 05. 검색엔진 SEO 최적화
 
 💖 **키워드를 검색하면 내 블로그가 뜰 수 있게 얼른 SEO랑 댓글 기능을 적용해야겠다!**
@@ -78,6 +87,126 @@ head: [
         gtag('config', 'G-XXXXXXX');
       `],
     ],
+```
+## meta
+
+---
+
+**📌 메타 태그만 잘 관리하여도 유리하다고 하여 이것도 한번 적용해보겠다.**
+
+```basic
+<html lang="en-US">
+  ...
+  <title>{게시물 타이틀} | {블로그 title}</title>
+  <meta name="description" content="{블로그 description}">
+  ...
+```
+
+블로그 `title`과 `description`은 `config.js`에서 수정할 수 있다.
+
+또한 모든 페이지 `<head>`에 꼭 넣고 싶은게 있다면 아래 `head` 에 넣어주어도 괜찮다.
+
+나와 같은 경우는 `google search console` 관련한 값을 넣어주었다.
+
+```jsx
+// .vuepress/config.js
+module.exports = {
+    title: "leehyungwon",
+    description: "leehyungwon 개발블로그 입니다.",
+    head: [
+			['meta', { name: 'google-site-verification', content: '구글서치콘솔값' }],
+		]
+}
+```
+
+📌 **다음 모든 게시물에 아래와 같이 자세하게 `meta` 태그를 걸어주면 검색에 유리!**
+
+```jsx
+---
+title: 검색엔진 SEO 최적화
+lang: ko-KR
+meta:
+  - name: description
+    content: SEO를 알아보고 VuePress에 적용하자.
+  - name: keywords
+    content: SEO 검색 엔진 최적화
+---
+```
+
+## meta
+
+📌 **메타 태그만 잘 관리하여도 유리하다고 하여 이것도 한번 적용해보겠다.**
+
+```basic
+<html lang="en-US">
+  ...
+  <title>{게시물 타이틀} | {블로그 title}</title>
+  <meta name="description" content="{블로그 description}">
+  ...
+```
+
+<br/>
+
+블로그 `title`과 `description`은 `config.js`에서 수정할 수 있다.
+
+또한 모든 페이지 `<head>`에 꼭 넣고 싶은게 있다면 아래 `head` 에 넣어주어도 괜찮다.
+
+나와 같은 경우는 `google search console` 관련한 값을 넣어주었다.
+
+<br/>
+
+```jsx
+// .vuepress/config.js
+module.exports = {
+    title: "leehyungwon",
+    description: "leehyungwon 개발블로그 입니다.",
+    head: [
+			['meta', { name: 'google-site-verification', content: '구글서치콘솔값' }],
+		]
+}
+```
+
+<br/>
+
+📌 **다음 모든 게시물에 아래와 같이 자세하게 `meta` 태그를 걸어주면 검색에 유리!**
+
+```jsx
+---
+title: 검색엔진 SEO 최적화
+lang: ko-KR
+meta:
+  - name: description
+    content: SEO를 알아보고 VuePress에 적용하자.
+  - name: keywords
+    content: SEO 검색 엔진 최적화
+---
+```
+<br/>
+
+📌 **국가코드는 페이지별로 설정할 필요 없으니 `config.js` 에서 설정해주도록 하자.**
+
+```jsx
+// .vuepress/config.js
+module.exports = {
+  ...
+  locales: {
+    '/': { lang: 'ko-KR' }
+  },
+  ...
+```
+
+<br/>
+
+📌 **국가코드는 페이지별로 설정할 필요 없으니 `config.js` 에서 설정해주도록 하자.**
+
+```jsx
+// .vuepress/config.js
+module.exports = {
+  ...
+  locales: {
+    '/': { lang: 'ko-KR' }
+  },
+  ...
 ```
 
 ### tip, 구글 서치 콘솔

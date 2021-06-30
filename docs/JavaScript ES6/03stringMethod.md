@@ -1,3 +1,12 @@
+---
+title: ES2015 String 새로운 메소드
+meta:
+  - name: description
+    content: javascript ES6 
+  - name: keywords
+    content: javascript ES6 
+---
+
 # 03. ES2015 String 새로운 메소드
 
 🤗 **ES6에 새로 나온 String 메소드에 대해서 살펴 보겠다**
