@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/hueleev/leehyungwon/issues"
   },
-  "homepage": "https://github.com/hueleev/leehyungwon#readme",
+  "homepage": "https://github.com/hueleev/leehyungwon#index",
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.8.2",
     "@vuepress/plugin-last-updated": "^1.8.2",
