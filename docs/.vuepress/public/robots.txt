@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://hueleev.github.io/leehyungwon/sitemap.xml
+Sitemap: https://hueleev.github.io/sitemap.xml
