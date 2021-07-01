@@ -9,7 +9,6 @@ git commit -m "$1 $2 $3 --all.sh master"
 git push origin master
 
 # build
-npm run postbuild
 npm run docs:build
 # navigate into the build output directory
 cd docs/.vuepress/dist
