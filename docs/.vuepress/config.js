@@ -5,7 +5,7 @@ module.exports = {
       '/': { lang: 'ko-KR' }
     },
     head: [
-      ['meta', { name: 'google-site-verification', content: 'QGOhGD99HvCUXbDTSPep9FTwqTHWFfm8b86-gbvssJQ' }],
+      /* ['meta', { name: 'google-site-verification', content: 'QGOhGD99HvCUXbDTSPep9FTwqTHWFfm8b86-gbvssJQ' }],
       ['script', { "data-ad-client": "ca-pub-5531898421123312", async: true, src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' }],
       ['script', { async: true, src: 'https://www.googletagmanager.com/gtag/js?id=G-N92EJN2ZMZ' }],
       [
@@ -17,7 +17,7 @@ module.exports = {
         gtag('js', new Date());
 
         gtag('config', 'G-N92EJN2ZMZ');
-      `],
+      `], */
     ],
     plugins: [
       ["sitemap", 
