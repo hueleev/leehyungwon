@@ -25,14 +25,14 @@ npm run docs:build
 
 ```jsx
 module.exports = {
-    title: "leehyungwon",
+    title: "leedamoo",
     description: "desc",
     themeConfig: {
       nav: [{ text: "Github", link: "https://github.com/hueleev" }], // github주소
       sidebar: getSidebarArr()
     },
     //<username>.github.io 뒤에 주소가 붙으시면 아래와 같이 ..
-    base: "/leehyungwon/"
+    base: "/leedamoo/"
   };
   
   function getSidebarArr() {
@@ -169,7 +169,7 @@ cd -
 sh deploy.sh
 ```
 
-몇 분 후, [https://hueleev.github.io/leehyungwon](https://hueleev.github.io/leehyungwon/vuepress/vuepress01.html) 와 같은 경로를 입력하면, 프로젝트가 올라온 걸 확인할 수 있다!
+몇 분 후, [https://hueleev.github.io/leedamoo](https://hueleev.github.io/leedamoo/vuepress/vuepress01.html) 와 같은 경로를 입력하면, 프로젝트가 올라온 걸 확인할 수 있다!
 
 ## tip
 

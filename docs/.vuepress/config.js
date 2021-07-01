@@ -1,6 +1,6 @@
 module.exports = {
-    title: "leehyungwon",
-    description: "leehyungwon 개발블로그 입니다.",
+    title: "leedamoo",
+    description: "leedamoo 개발블로그 입니다.",
     locales: {
       '/': { lang: 'ko-KR' }
     },
@@ -74,7 +74,7 @@ module.exports = {
     var tmpMdfileList = [];
     // remove .md, add Path
     mdfileList.forEach(function(mdfile) {
-      if (mdfile.substr(-3) === ".md") {
+      if (mdfile.substr(-3) === ".md" && !mdfile.startsWith("index")) {
         mdfile = mdfile.slice(0, -3) === "README" ? "" : mdfile.slice(0, -3);
         tmpMdfileList.push(path + mdfile);
       }

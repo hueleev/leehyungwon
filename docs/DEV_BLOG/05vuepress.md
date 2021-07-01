@@ -52,7 +52,7 @@ module.export = {
   plugins: [
     ["sitemap",
       {
-        hostname: "https://hueleev.github.io/leehyungwon",
+        hostname: "https://hueleev.github.io/leedamoo",
         dateFormatter: val => {  // 이부분을 넣어줬더니 빌드가 제대로 됐다.
           return new Date().toISOString()
         }
@@ -64,7 +64,7 @@ module.export = {
 
 <br/>
 
-📌 **배포 이후, 구글 서치 콘솔에 가서 sitemap 제출란에 `https://hueleev.github.io/leehyungwon/sitemap.xml` 로 등록하면 된다.**
+📌 **배포 이후, 구글 서치 콘솔에 가서 sitemap 제출란에 `https://hueleev.github.io/leedamoo/sitemap.xml` 로 등록하면 된다.**
 
 ## Robots.txt
 
@@ -132,8 +132,8 @@ head: [
 ```jsx
 // .vuepress/config.js
 module.exports = {
-    title: "leehyungwon",
-    description: "leehyungwon 개발블로그 입니다.",
+    title: "leedamoo",
+    description: "leedamoo 개발블로그 입니다.",
     head: [
       ['script', { "data-ad-client": "ca-pub-XXXXX", async: true, src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' }],
 		]
