@@ -1,9 +1,8 @@
-<!-- 
 ---
 meta:
     - name: google-site-verification
       content: QGOhGD99HvCUXbDTSPep9FTwqTHWFfm8b86-gbvssJQ
---- -->
+---
 
 
 # 😃 DEV BLOG,

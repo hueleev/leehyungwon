@@ -22,7 +22,7 @@ module.exports = {
     plugins: [
       ["sitemap", 
         { 
-          hostname: "https://hueleev.github.io/",
+          hostname: "https://hueleev.github.io/leehyungwon",
           dateFormatter: val => {
             return new Date().toISOString()
           }
