@@ -97,7 +97,7 @@ false true // 실제로는 유효하지 않은 걸 확인할 수 있다.
 ```
 
 <br/>
-:: tip
+::: tip
 
 1. `weakset` 은 열거가 불가능 하다.
 2. `Memory Leak` 으로부터 자유롭다.
