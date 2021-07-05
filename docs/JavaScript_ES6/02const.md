@@ -71,7 +71,7 @@ home();
 
 🤔 **그렇다면 immutable array는 어떻게 만들까?**
 
-## ✨ immustable array
+## ✨ immutable array
 
 ```jsx
 const list = ["apple", "orange", "watermelon"];

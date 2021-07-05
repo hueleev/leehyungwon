@@ -13,8 +13,6 @@ meta:
 
 ## ✨ 참조를 가지고 있는 객체만 저장 가능
 
----
-
 ```jsx
 let arr = [1,2,3,4];
 let ws = new WeakSet();
@@ -30,6 +28,8 @@ console.log(ws);
 ```
 
 ### 🔎 console
+
+---
 
 ```basic
 [object WeakSet] { ... }
@@ -97,11 +97,10 @@ false true // 실제로는 유효하지 않은 걸 확인할 수 있다.
 ```
 
 <br/>
-::: tip
 
+::: tip
 1. `weakset` 은 열거가 불가능 하다.
 2. `Memory Leak` 으로부터 자유롭다.
-
 :::
 
 ### Reference
