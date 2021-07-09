@@ -25,6 +25,8 @@ meta:
 
 ## 🌏 SNS
 
-### `blog` [blog](https://blog.naver.com/hue2music)
+### `blog` [blog](https://undefined-theme.tistory.com/)
 
 ### `instagram` [instagram](http://www.instagram.com/hyungwon_)
+
+### `youtube` [youtube](https://www.youtube.com/channel/UC8ahvhtsuPFEZy15218Aaog)
