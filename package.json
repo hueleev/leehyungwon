@@ -24,6 +24,7 @@
     "@vuepress/plugin-last-updated": "^1.8.2",
     "@vuepress/plugin-pwa": "^1.8.2",
     "vuepress": "^1.8.2",
+    "vuepress-plugin-disqus": "^0.2.0",
     "vuepress-plugin-sitemap": "^2.1.2"
   }
 }

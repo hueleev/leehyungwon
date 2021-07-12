@@ -33,7 +33,7 @@ module.exports = {
       ['@vuepress/pwa', {
         serviceWorker: true,
         updatePopup: true
-      }],
+      }]
     ],
     themeConfig: {
       nav: [{ text: "Github", link: "https://github.com/hueleev" }],
