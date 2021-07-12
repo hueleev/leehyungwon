@@ -17,8 +17,6 @@
 import PageEdit from '@theme/components/PageEdit.vue'
 import PageNav from '@theme/components/PageNav.vue'
 
-import Disqus from "../../components/Disqus";
-
 export default {
   components: { PageEdit, PageNav, Disqus },
   props: ['sidebarItems'],
