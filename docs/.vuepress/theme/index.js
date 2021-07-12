@@ -15,6 +15,7 @@ module.exports = (options, ctx) => {
   const enableSmoothScroll = themeConfig.smoothScroll === true
 
   return {
+    extend: "@vuepress/theme-default",
     alias () {
       return {
         '@AlgoliaSearchBox': isAlgoliaSearch

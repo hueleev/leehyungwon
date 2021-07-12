@@ -38,6 +38,7 @@
       </template>
       <template #bottom>
         <slot name="page-bottom" />
+         <Disqus slot="page-bottom" class="content" />
       </template>
     </Page>
   </div>
@@ -48,6 +49,7 @@ import Home from '@theme/components/Home.vue'
 import Navbar from '@theme/components/Navbar.vue'
 import Page from '@theme/components/Page.vue'
 import Sidebar from '@theme/components/Sidebar.vue'
+import Disqus from "../../components/Disqus";
 import { resolveSidebarItems } from '../util'
 
 export default {
@@ -57,7 +59,8 @@ export default {
     Home,
     Page,
     Sidebar,
-    Navbar
+    Navbar,
+    Disqus
   },
 
   data () {
@@ -149,3 +152,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .content {
+    width: 750px;
+    margin: 0 auto;
+  }
+</style>
