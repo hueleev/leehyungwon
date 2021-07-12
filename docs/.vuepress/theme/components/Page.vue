@@ -7,7 +7,9 @@
 
     <PageNav v-bind="{ sidebarItems }" />
 
-    <slot name="bottom" />
+    <slot name="bottom">
+      <Disqus slot="page-bottom" class="content" />
+    </slot>
   </main>
 </template>
 
@@ -15,15 +17,20 @@
 import PageEdit from '@theme/components/PageEdit.vue'
 import PageNav from '@theme/components/PageNav.vue'
 
+import Disqus from "../../components/Disqus";
+
 export default {
-  components: { PageEdit, PageNav },
+  components: { PageEdit, PageNav, Disqus },
   props: ['sidebarItems']
 }
 </script>
 
 <style lang="stylus">
 @require '../styles/wrapper.styl'
-
+.content {
+    width: 750px;
+    margin: 0 auto;
+}
 .page
   padding-bottom 2rem
   display block
