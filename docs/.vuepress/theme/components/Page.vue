@@ -8,7 +8,7 @@
     <PageNav v-bind="{ sidebarItems }" />
 
     <slot name="bottom">
-      <div id="disqus_thread" class="content" ></div>
+      <div id="disqus_thread" class="content" style="width: 750px; margin: 0 auto;"></div>
     </slot>
   </main>
 </template>
@@ -35,10 +35,6 @@ export default {
 
 <style lang="stylus">
 @require '../styles/wrapper.styl'
-.content {
-    width: 750px;
-    margin: 0 auto;
-}
 .page
   padding-bottom 2rem
   display block
