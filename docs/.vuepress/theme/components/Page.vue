@@ -20,12 +20,13 @@
 <script>
 import PageEdit from '@theme/components/PageEdit.vue'
 import PageNav from '@theme/components/PageNav.vue'
+import VueDisqus from 'vue-disqus'
 
 export default {
   components: { PageEdit, PageNav },
   props: ['sidebarItems'],
   mounted() {
-    this.$disqus.reset();
+    VueDisqus.reset();
   }
   // mounted() {
   //   (function() {
