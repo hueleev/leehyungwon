@@ -8,7 +8,7 @@
     <PageNav v-bind="{ sidebarItems }" />
 
     <slot name="bottom">
-      <Disqus slot="page-bottom" class="content" />
+      <div id="disqus_thread" class="content" ></div>
     </slot>
   </main>
 </template>
@@ -21,7 +21,15 @@ import Disqus from "../../components/Disqus";
 
 export default {
   components: { PageEdit, PageNav, Disqus },
-  props: ['sidebarItems']
+  props: ['sidebarItems'],
+  mounted() {
+    (function() {
+      var d = window.document, s = d.createElement('script');
+      s.src = 'https://leedamoo.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
 }
 </script>
 
