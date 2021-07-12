@@ -18,7 +18,7 @@ import PageEdit from '@theme/components/PageEdit.vue'
 import PageNav from '@theme/components/PageNav.vue'
 
 export default {
-  components: { PageEdit, PageNav, Disqus },
+  components: { PageEdit, PageNav },
   props: ['sidebarItems'],
   mounted() {
     (function() {
