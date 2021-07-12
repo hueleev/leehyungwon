@@ -38,8 +38,10 @@
       </template>
       <template #bottom>
         <slot name="page-bottom" />
+        <Disqus  class="content" />
       </template>
     </Page>
+   
   </div>
 </template>
 
@@ -49,6 +51,7 @@ import Navbar from '@theme/components/Navbar.vue'
 import Page from '@theme/components/Page.vue'
 import Sidebar from '@theme/components/Sidebar.vue'
 import { resolveSidebarItems } from '../util'
+import Disqus from '../components/Disqus.vue';
 
 export default {
   name: 'Layout',
@@ -57,7 +60,8 @@ export default {
     Home,
     Page,
     Sidebar,
-    Navbar
+    Navbar,
+    Disqus
   },
 
   data () {
@@ -116,7 +120,15 @@ export default {
   },
 
   mounted () {
-    this.$router.afterEach(() => {
+    this.$router.afterEach((to, from) => {
+      if (from.path !== to.path) {
+        if (typeof window !== 'undefined' && window.DISQUS) {
+          setTimeout(() => {
+            console.log('DISQUS is exists and try to load!')
+            window.DISQUS.reset({ reload: true })
+          }, 0)
+        }
+      }
       this.isSidebarOpen = false;
     })
   },
@@ -149,3 +161,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.content {
+width: 750px; margin: 0 auto;
+}
+</style>

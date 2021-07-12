@@ -24,8 +24,8 @@ module.exports = (options, ctx) => {
     },
 
     plugins: [
+      '@vuepress/theme-default',
       ['@vuepress/active-header-links', options.activeHeaderLinks],
-      ['disqus', {shortname: 'leedamoo'}],
       '@vuepress/search',
       '@vuepress/plugin-nprogress',
       ['container', {

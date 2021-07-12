@@ -7,12 +7,7 @@
 
     <PageNav v-bind="{ sidebarItems }" />
 
-    <slot name="bottom">
-      <!-- <div id="disqus_thread" class="content" style="width: 750px; margin: 0 auto;"></div> -->
-      <div style="width: 750px; margin: 0 auto;">
-           <Disqus ref="disqus"/> 
-      </div>
-    </slot>
+    <slot name="bottom"/>
     
   </main>
 </template>
@@ -20,22 +15,10 @@
 <script>
 import PageEdit from '@theme/components/PageEdit.vue'
 import PageNav from '@theme/components/PageNav.vue'
-import VueDisqus from 'vue-disqus'
 
 export default {
   components: { PageEdit, PageNav },
   props: ['sidebarItems'],
-  mounted() {
-    VueDisqus.reset();
-  }
-  // mounted() {
-  //   (function() {
-  //     var d = window.document, s = d.createElement('script');
-  //     s.src = 'https://leedamoo.disqus.com/embed.js';
-  //     s.setAttribute('data-timestamp', +new Date());
-  //     (d.head || d.body).appendChild(s);
-  //   })();
-  // }
 }
 </script>
 
