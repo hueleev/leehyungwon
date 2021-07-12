@@ -38,7 +38,6 @@
       </template>
       <template #bottom>
         <slot name="page-bottom" />
-        
       </template>
     </Page>
   </div>
@@ -118,7 +117,7 @@ export default {
 
   mounted () {
     this.$router.afterEach(() => {
-      this.isSidebarOpen = false
+      this.isSidebarOpen = false;
     })
   },
 
