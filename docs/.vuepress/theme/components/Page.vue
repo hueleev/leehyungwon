@@ -9,10 +9,11 @@
 
     <slot name="bottom">
       <!-- <div id="disqus_thread" class="content" style="width: 750px; margin: 0 auto;"></div> -->
+      <div style="width: 750px; margin: 0 auto;">
+           <Disqus ref="disqus"/> 
+      </div>
     </slot>
-    <div style="width: 750px; margin: 0 auto;">
-      <Disqus /> 
-    </div>
+    
   </main>
 </template>
 
@@ -23,6 +24,9 @@ import PageNav from '@theme/components/PageNav.vue'
 export default {
   components: { PageEdit, PageNav },
   props: ['sidebarItems'],
+  mounted() {
+    this.$disqus.reset();
+  }
   // mounted() {
   //   (function() {
   //     var d = window.document, s = d.createElement('script');
