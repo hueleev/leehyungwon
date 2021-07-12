@@ -58,20 +58,20 @@ meta:
   <div id="disqus_thread"></div>
 </template>
 <script>
-  export default {
+export default {
     mounted() {
-      var disqus_config = function () {
-        this.page.url = window.location.origin;  
-        this.page.identifier = window.location.pathname; 
-      };
-      (function() {
-        var d = window.document, s = d.createElement('script');
-        s.src = 'https://leedamoo.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-      })();
+        var disqus_config = function () {
+            this.page.url = window.location.origin;  
+            this.page.identifier = window.location.pathname; 
+        };
+        (function() {
+            var d = window.document, s = d.createElement('script');
+            s.src = 'https://leedamoo.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
     }
-  }
+}
 </script>
 ```
 
@@ -103,6 +103,14 @@ module.exports = {
 };
 ```
 
+혹은
+
+```jsx
+plugins: [
+      '@vuepress/theme-default',
+]
+```
+
 <br/>
 
 📌 **그리고 마지막으로 `.vuepress/theme/Layout.vue` 를 추가해거나....**
@@ -116,21 +124,22 @@ module.exports = {
 </template>
 
 <style scoped>
-  .content {
+.content {
     width: 750px;
     margin: 0 auto;
-  }
+}
 </style>
 
 <script>
-  import ParentLayout from "@parent-theme/layouts/Layout.vue";
-  import Disqus from "../components/Disqus";
-  export default {
+import ParentLayout from "@parent-theme/layouts/Layout.vue";
+import Disqus from "../components/Disqus";
+
+export default {
     components: {
-      ParentLayout,
-      Disqus
+        ParentLayout,
+        Disqus
     }
-  };
+};
 </script>
 ```
 
@@ -140,7 +149,6 @@ module.exports = {
 
 ```jsx
 // .vuepress/theme/layouts/Layout.vue
-...
 <Page
   v-else
   :sidebar-items="sidebarItems"
@@ -158,11 +166,10 @@ module.exports = {
 import Disqus from '../components/Disqus' // 경로 확인을 꼭 하자 ! 난 Disqus 컴포넌트를 .vuepress/theme 하단으로 이동해주었다.
 
 export default {
-  ...
   components: {
     ...
     Disqus
-  },
+  }
 }
 </script>
 
@@ -180,8 +187,7 @@ margin: 0 auto;
 
 ```jsx
 // .vuepress/theme/layouts/Layout.vue 
-
-mouted() {
+mounted() {
     this.$router.afterEach((to, from) => {
       if (from.path !== to.path) {
         if (typeof window !== 'undefined' && window.DISQUS) {
@@ -194,7 +200,6 @@ mouted() {
       this.isSidebarOpen = false;
     })
 }
-
 ```
 
 ### Reference
@@ -202,3 +207,4 @@ mouted() {
 ---
 
 [https://kyounghwan01.github.io/blog/Vue/vuepress/vuepress-content/#개선](https://kyounghwan01.github.io/blog/Vue/vuepress/vuepress-content/#%E1%84%80%E1%85%A2%E1%84%89%E1%85%A5%E1%86%AB)
+[https://62che.com/blog/vuepress/%EB%8C%93%EA%B8%80-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%97%B0%EB%8F%99%ED%95%98%EA%B8%B0.html#%E1%84%92%E1%85%A2%E1%84%80%E1%85%A7%E1%86%AF%E1%84%8B%E1%85%B3%E1%86%AF-%E1%84%92%E1%85%A1%E1%84%8C%E1%85%A1](https://62che.com/blog/vuepress/%EB%8C%93%EA%B8%80-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%97%B0%EB%8F%99%ED%95%98%EA%B8%B0.html#%E1%84%92%E1%85%A2%E1%84%80%E1%85%A7%E1%86%AF%E1%84%8B%E1%85%B3%E1%86%AF-%E1%84%92%E1%85%A1%E1%84%8C%E1%85%A1)
