@@ -139,6 +139,7 @@ module.exports = {
 📌 **나는 기존에 eject 해온 theme 가 존재해서... `.vuepress/theme/layouts/Layout.vue` 에 `Disqus`를 추가해주었다.**
 
 ```jsx
+// .vuepress/theme/layouts/Layout.vue
 ...
 <Page
   v-else
@@ -149,12 +150,12 @@ module.exports = {
   </template>
   <template #bottom>
     <slot name="page-bottom" />
-		<Disqus slot="page-bottom" class="content" />
+	<Disqus class="content" />
   </template>
 </Page>
 
 <script>
-import Disqus from '../../components/Disqus'
+import Disqus from '../components/Disqus' // 경로 확인을 꼭 하자 ! 난 Disqus 컴포넌트를 .vuepress/theme 하단으로 이동해주었다.
 
 export default {
   ...
@@ -166,11 +167,34 @@ export default {
 </script>
 
 <style scoped>
-  .content {
-    width: 750px;
-    margin: 0 auto;
-  }
+.content {
+width: 750px;
+margin: 0 auto;
+}
 </style>
+```
+
+📌 **또한 SPA 기반 블로그이므로 다른 페이지로 가도 `Disqus` 컴포넌트가 바뀌지 않는 문제점을 해결해야 한다.**
+
+**나는 다른 블로그를 참조하여 아래와 같이 `router.afterEach` 코드를 추가하였다.**
+
+```jsx
+// .vuepress/theme/layouts/Layout.vue 
+
+mouted() {
+    this.$router.afterEach((to, from) => {
+      if (from.path !== to.path) {
+        if (typeof window !== 'undefined' && window.DISQUS) {
+          setTimeout(() => {
+            console.log('DISQUS is exists and try to load!')
+            window.DISQUS.reset({ reload: true })
+          }, 0)
+        }
+      }
+      this.isSidebarOpen = false;
+    })
+}
+
 ```
 
 ### Reference

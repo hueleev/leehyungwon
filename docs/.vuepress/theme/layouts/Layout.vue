@@ -38,7 +38,7 @@
       </template>
       <template #bottom>
         <slot name="page-bottom" />
-        <Disqus  class="content" />
+        <Disqus class="content" />
       </template>
     </Page>
    
