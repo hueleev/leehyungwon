@@ -166,5 +166,6 @@ export default {
 .content {
  max-width: 740px;
  padding: 1.5rem;
+ margin: 0 auto;
 }
 </style>
