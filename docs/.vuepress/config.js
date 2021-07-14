@@ -37,7 +37,7 @@ module.exports = {
     ],
     themeConfig: {
       nav: [{ text: "Github", link: "https://github.com/hueleev" }],
-      sidebar: getSidebarArr()
+      sidebar: getSidebarArr(),
     },
     smoothScroll: true,
     //<username>.github.io 뒤에 주소가 붙으시면 아래와 같이 ..
@@ -66,6 +66,14 @@ module.exports = {
       }
     });
     sidebarArr.unshift(makeSidebarObject("", HomeFilelist));
+    sidebarArr.push({
+        title: 'PROJECT',
+        children: ['01simpleBoard.md', {
+          title: 'test',
+          childeren: ['test.md']
+        }]
+    });
+    console.log(sidebarArr);
     return sidebarArr;
   }
   function makeSidebarObject(folder, mdfileList) {
