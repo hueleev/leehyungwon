@@ -66,14 +66,6 @@ module.exports = {
       }
     });
     sidebarArr.unshift(makeSidebarObject("", HomeFilelist));
-    sidebarArr.push({
-        title: 'PROJECT',
-        children: ['01simpleBoard.md', {
-          title: 'test',
-          childeren: ['test.md']
-        }]
-    });
-    console.log(sidebarArr);
     return sidebarArr;
   }
   function makeSidebarObject(folder, mdfileList) {
