@@ -164,6 +164,8 @@ export default {
 
 <style scoped>
 .content {
-width: 750px; margin: 0 auto;
+ max-width: 740px;
+ padding: 1.5rem;
+ margin: 0 auto;
 }
 </style>
