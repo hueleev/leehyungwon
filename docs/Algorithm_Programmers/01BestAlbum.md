@@ -97,8 +97,8 @@ public class Hash_004_BestAlbum  {
 
         // 재생수 순 정렬
         List<String> keySetList = new ArrayList<>(playMap.keySet());
-        Collections.sort(keySetList, (o1, o2) -> (playMap.get(o2).compareTo(playMap.get(o1))));
-        
+        keySetList.sort((o1, o2) -> (playMap.get(o2).compareTo(playMap.get(o1))));
+
         List<Integer> answerList = new ArrayList<>();
         for (String genre : keySetList) {
             Map<Integer, Integer> genreMap = new HashMap<>(); // 장르 index, 재생수 맵
@@ -108,9 +108,9 @@ public class Hash_004_BestAlbum  {
                 }
             }
 
-            // 재생수 순 정렬
+            // 장르 내 재생수 순 정렬
             List<Integer> idxList = new ArrayList<>(genreMap.keySet());
-            Collections.sort(idxList, (o1, o2) -> (genreMap.get(o2).compareTo(genreMap.get(o1))));
+            idxList.sort((o1, o2) -> (genreMap.get(o2).compareTo(genreMap.get(o1))));
             int limitChk = 0;
             for (Integer idx : idxList) {
                 if (limitChk == 2) {
