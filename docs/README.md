@@ -19,8 +19,6 @@ meta:
 
 ### `email` hueleev@gmail.com
 
-### `linkedin` [linkedin](https://www.linkedin.com/in/hyungwon-lee-1305a416a/)
-
 <br/>
 
 ## 🌏 SNS
