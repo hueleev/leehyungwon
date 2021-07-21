@@ -36,9 +36,9 @@ meta:
 
 📢 **입출력 예**
 
-genres | plays | return
---- | --- | ---
-["classic", "pop", "classic", "classic", "pop"]	| [500, 600, 150, 800, 2500] | [4, 1, 3, 0]
+| genres | plays | return |
+| --- | --- | --- |
+| ["classic", "pop", "classic", "classic", "pop"]	| [500, 600, 150, 800, 2500] | [4, 1, 3, 0] |
 
 📢 **입출력 예 설명**
 
