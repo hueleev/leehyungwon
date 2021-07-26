@@ -78,6 +78,89 @@ meta:
 
 * **삭제하는 연산 `poll`**
 
+---
+
+::: details 💎
+해당 문제를 풀기 위해서, 먼저 인덱스와 중요도를 담은 Print 클래스를 만들어주었다.
+
+그리고 Queue에 Print를 전부 넣어준 후,
+
+Queue안에 아무것도 남지 않을 때 까지 중요도를 비교해주었다.
+
+Queue 안에 타겟보다 중요도가 높은 자료가 있을 경우, 다시 Queue안에 집어넣어주었다.
+:::
+
+## 🔑 풀이
+
+```java
+public class StackQue_004_Printer {
+    private static int[] priorities = {1, 1, 9, 1, 1, 1};
+    private static int location = 0;
+
+    public static int solution() {
+        // 프린트 인덱스 담을 Queue
+        Queue<Print> printList = new LinkedList<>();
+        for (int i = 0; i < priorities.length; i++) {
+            printList.offer(new Print(i, priorities[i]));
+        }
+
+        // 프린트될때마다 카운트
+        int answer = 0;
+
+        // 프린트할 자료가 더이상 없을때까지
+        while(!printList.isEmpty()) {
+            Print print = printList.poll();
+
+            boolean printFlag = true; // 프린트했나?
+
+            for (Print p : printList) {
+              // 중요도 비교 후,  
+              if (print.getPriority() < p.getPriority()) {
+                  printList.offer(print);
+                  printFlag = false;
+                  break; 
+              }
+            }
+
+            if (printFlag) {
+                answer++;
+                if (print.getIdx() == location) { // 인덱스 일치할 경우, break
+                    break;
+                }
+            }
+        }
+
+        return answer;
+    }
+}
+
+class Print {
+    private int idx;
+    private int priority;
+
+    public Print(int idx, int priority) {
+        this.idx = idx;
+        this.priority = priority;
+    }
+
+    public int getIdx() {
+        return idx;
+    }
+
+    public void setIdx(int idx) {
+        this.idx = idx;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+}
+```
+
 ### Reference
 
 ---
