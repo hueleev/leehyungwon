@@ -135,4 +135,4 @@ public class Hash_004_BestAlbum  {
 
 ---
 
-[프로그래머스](https://programmers.co.kr/learn/challenges)
+[프로그래머스_베스트앨범](https://programmers.co.kr/learn/courses/30/lessons/42579)
