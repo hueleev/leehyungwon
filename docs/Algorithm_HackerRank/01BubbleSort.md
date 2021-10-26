@@ -1,5 +1,5 @@
 ---
-title:  01. Bubble Sort (버블 정렬) | 해커랭크 (HackerRank) | JAVA
+title: 01. Bubble Sort (버블 정렬) | 해커랭크 (HackerRank) | JAVA
 meta:
   - name: description
     content: Java algorithm HackerRank BubbleSort 알고리즘 해커랭크 버블정렬

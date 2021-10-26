@@ -1,5 +1,5 @@
 ---
-title:  01. Sales By Match | 해커랭크 (HackerRank) | JAVA
+title: 02. Sales By Match | 해커랭크 (HackerRank) | JAVA
 meta:
   - name: description
     content: Java algorithm HackerRank 알고리즘 해커랭크
@@ -7,7 +7,7 @@ meta:
     content: Java algorithm HackerRank 알고리즘 해커랭크
 ---
 
-# 01. Sales By Match | 해커랭크 (HackerRank) | JAVA
+# 02. Sales By Match | 해커랭크 (HackerRank) | JAVA
 
 ## 🔑 풀이
 
