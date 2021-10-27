@@ -21,8 +21,8 @@ git add -A
 git commit -m 'board sample & deploy with vuepress'
 
 # if you are deploying to https://<USERNAME>.github.io
-#git push -f git@github.com:hueleev/hueleev.github.io.git master:gh-pages
-git push -f https://4EVERmore93!@hueleev/hueleev.github.io.git master:gh-pages
+git push -f git@github.com:hueleev/hueleev.github.io.git master:gh-pages
+
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
 # git push -f https://github.com/hueleev/huleev.github.io master:gh-pages
 
