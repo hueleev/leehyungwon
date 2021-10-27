@@ -1,0 +1,41 @@
+# This is a basic workflow to help you get started with Actions
+
+name: build & deploy # actions 의 workflow 이름
+
+# workflow 가 동작되는 상황
+# master 브랜치에 push 가 발생되는 상황에서 동작한다는 뜻
+on:
+  push:
+    branches: [master]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build-and-deploy: # job의 이름, 여러개의 job이 등록될 수 있음
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest # job 이 돌아가는 환경
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2 # GITHUB_WORKSPACE 로 체크아웃
+
+      # node package 설치
+      - name: install and build
+        run: |
+          npm install
+          npm run docs:build
+
+      # gh-pages 로 배포 (vuepress 배포 스크립트에서 차용)
+      - name: deploy build files
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # 해당 repository 의 Secrets 의 토큰정보를 환경변수에 저장한 후
+        run: |
+          cd docs/.vuepress/dist
+          git config --global user.email "hueleev@gmail.com"
+          git config --global user.name "leedamoo"
+          git init
+          git add -A
+          git commit -m 'deploy with vuepress'
+          # 토큰정보를 바탕으로 gh-pages 브랜치에 push
+          git push -f https://${ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY}.git master:gh-pages
