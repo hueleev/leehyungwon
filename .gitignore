@@ -1,3 +1,7 @@
 node_modules
+<<<<<<< HEAD
 docs/.vuepress/dist
 deploy.sh
+=======
+docs/.vuepress/dist
+>>>>>>> 7f15de044e06637fb7ed035fe2ac04d4ff20a4dd
