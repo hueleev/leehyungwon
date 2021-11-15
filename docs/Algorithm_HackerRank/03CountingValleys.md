@@ -11,15 +11,9 @@ meta:
 
 ## 🔒 문제
 
-<<<<<<< HEAD
 문제가 헷갈렸다 ,, 영어 문제는 역시 어려워 ㅠㅠ <br/>
 *sealevel*을 0으로 보고, 0 위로 올라갔다 0으로 돌아오면 mountain, 0 아래에서 올라와 0으로 돌아오면 valley로 본다.<br/>
 __valley를 counting 해주면 되는 문제 -__<br/>
-=======
-문제가 헷갈렸다 ,, 영어 문제는 역시 어려워 ㅠㅠ
-sealevel을 0으로 보고, 0 위로 올라갔다 0으로 돌아오면 mountain, 0 아래에서 올라와 0으로 돌아오면 valley로 본다.
-valley를 counting 해주면 되는 문제 -
->>>>>>> 7f15de044e06637fb7ed035fe2ac04d4ff20a4dd
 
 ## 🔑 풀이
 
