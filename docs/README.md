@@ -9,7 +9,7 @@ meta:
 
 <img src="./.vuepress/public/img/avatar.png" width="300" height="300" style="border-radius: 50%; display: block; margin: 0 auto;">
 
-### `author` leedamoo
+### `author` leehyungwon
 
 ### `github` [Github](https://github.com/hueleev)
 
