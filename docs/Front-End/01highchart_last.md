@@ -68,6 +68,7 @@ const categories = [
             'Nov',
             'Dec'
         ]; 
+        
 Highcharts.chart('container', {
     chart: {
         type: 'column',
