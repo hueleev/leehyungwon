@@ -26,7 +26,7 @@
     "@vuepress/theme-default": "^1.8.2",
     "vuepress": "^1.8.2",
     "vuepress-plugin-disqus": "^0.2.0",
-    "vuepress-plugin-sitemap": "^2.1.2"
-  },
-  "dependencies": {}
+    "vuepress-plugin-sitemap": "^2.1.2",
+    "markdown-it-katex": "^2.0.3"
+  }
 }
