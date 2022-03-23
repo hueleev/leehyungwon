@@ -48,7 +48,7 @@ xAxis: {
 
 ![highcharts](../.vuepress/public/img/front-end/01/2.png)
 
-## [코드](https://jsfiddle.net/67Lb3t4m/33/)
+## [코드](https://jsfiddle.net/rpqwnd5h/1/)
 
 
 ```jsx
@@ -93,7 +93,7 @@ Highcharts.chart('container', {
                     chart.xAxis[0].update({
                       labels: {
                         formatter: function() {
-                          if (data[length-idx].category == this.value) {
+                          if (data[length-idx].x == this.pos) {
                             return `<b style="color: ${COLOR_BLUE}">${this.value}</b>`;
                           } else {
                             return this.value;
