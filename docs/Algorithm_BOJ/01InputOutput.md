@@ -76,6 +76,8 @@ nextLine >>>  [ World] // nextLine() -> 이전에 인식한 문자 + Enter인식
 | --- | --- |
 | | Hello World! |
 
+**🔑 풀이**
+
 ```java
 public class Main {
 
@@ -106,6 +108,8 @@ public class Main {
 | --- | --- |
 | 1 2 | 3 |
 
+**🔑 풀이**
+
 ```java
 import java.util.Scanner;
 
@@ -119,7 +123,6 @@ public class Main {
     }
 
 }
-
 ```
 
 
@@ -142,6 +145,8 @@ public class Main {
 | 예제 입력 1 | 예제 출력 1 |
 | --- | --- |
 | 1<br>2 | 3 |
+
+**🔑 풀이**
 
 ```java
 import java.util.Scanner;
@@ -178,6 +183,8 @@ public class Main {
 | 예제 입력 1 | 예제 출력 1 |
 | --- | --- |
 | 5<br>1 1<br>2 3<br>3 4<br>9 8<br>5 2 | 2<br>5<br>7<br>17<br>7 |
+
+**🔑 풀이**
 
 ```java
 import java.util.Scanner;
@@ -224,6 +231,8 @@ public class Main {
 | --- | --- |
 | 1 1<br>2 3<br>3 4<br>9 8<br>5 2 | 2<br>5<br>7<br>17<br>7 |
 
+**🔑 풀이**
+
 ```java
 import java.util.Scanner;
 
@@ -266,6 +275,8 @@ public class Main {
 | 예제 입력 1 | 예제 출력 1 |
 | --- | --- |
 | 1 1<br>2 3<br>3 4<br>9 8<br>5 2<br>0 0 | 2<br>5<br>7<br>17<br>7 |
+
+**🔑 풀이**
 
 ```java
 import java.util.Scanner;
@@ -310,6 +321,8 @@ public class Main {
 | --- | --- |
 | 5<br>1,1<br>2,3<br>3,4<br>9,8<br>5,2 | 2<br>5<br>7<br>17<br>7 |
 
+**🔑 풀이**
+
 ```java
 import java.util.Scanner;
 
@@ -348,6 +361,8 @@ public class Main {
 | 예제 입력 1 | 예제 출력 1 |
 | --- | --- |
 | 5<br>1,1<br>2,3<br>3,4<br>9,8<br>5,2 | Case #1: 2<br>Case #2: 5<br>Case #3: 7<br>Case #4: 17<br>Case #5: 7 |
+
+**🔑 풀이**
 
 ```java
 import java.util.Scanner;
@@ -390,6 +405,8 @@ public class Main {
 | --- | --- |
 | 5<br>1,1<br>2,3<br>3,4<br>9,8<br>5,2 | Case #1: 1 + 1 = 2<br>Case #2: 2 + 3 = 5<br>Case #3: 3 + 4 = 7<br>Case #4: 9 + 8 = 17<br>Case #5: 5 + 2 = 7 |
 
+**🔑 풀이**
+
 ```java
 import java.util.Scanner;
 
@@ -431,6 +448,8 @@ public class Main {
 | Hello<br>Baekjoon<br>Online Judge | Hello<br>Baekjoon<br>Online Judge |
 
 
+**🔑 풀이**
+
 ```java
 import java.util.Scanner;
 
@@ -467,6 +486,8 @@ public class Main {
 | &nbsp;&nbsp;&nbsp;&nbsp;Hello<br><br>Baekjoon&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;Online Judge | &nbsp;&nbsp;&nbsp;&nbsp;Hello<br><br>Baekjoon&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;Online Judge |
 
     
+**🔑 풀이**
+
 ```java
 import java.util.Scanner;
 
@@ -514,6 +535,8 @@ N개의 숫자가 공백 없이 쓰여있다. 이 숫자를 모두 합해서 출
 | --- | --- |
 | 11<br>10987654321 | 46 |
 
+**🔑 풀이**
+
 ```java
 import java.util.Scanner;
 
@@ -560,6 +583,8 @@ public class Main {
 | --- | --- |
 | OneTwoThreeFourFiveSixSevenEightNineTen | OneTwoThre<br>eFourFiveS<br>ixSevenEig<br>htNineTen |
 
+**🔑 풀이**
+
 ```java
 import java.util.Scanner;
 
@@ -604,6 +629,8 @@ public class Main {
 | --- | --- |
 | 5 | 1<br>2<br>3<br>4<br>5 |
 
+**🔑 풀이**
+
 ```java
 import java.util.Scanner;
 
@@ -641,6 +668,8 @@ public class Main {
 | --- | --- |
 | 5 | 5<br>4<br>3<br>2<br>1 |
 
+**🔑 풀이**
+
 ```java
 import java.util.Scanner;
 
@@ -677,6 +706,8 @@ N을 입력받은 뒤, 구구단 N단을 출력하는 프로그램을 작성하�
 | 예제 입력 1 | 예제 출력 1 |
 | --- | --- |
 | 2 | 2 * 1 = 2<br>2 * 2 = 4<br>2 * 3 = 6<br>2 * 4 = 8<br>2 * 5 = 10<br>2 * 6 = 12<br>2 * 7 = 14<br>2 * 8 = 16<br>2 * 9 = 18 |
+
+**🔑 풀이**
 
 ```java
 import java.util.Scanner;
@@ -727,6 +758,8 @@ public class Main {
 | --- | --- |
 | 12 25 | TUE |
 
+**🔑 풀이**
+
 ```java
 import java.util.Scanner;
 
@@ -776,6 +809,8 @@ n이 주어졌을 때, 1부터 n까지 합을 구하는 프로그램을 작성�
 | --- | --- |
 | 3 | 6 |
 
+**🔑 풀이**
+
 ```java
 import java.util.Scanner;
 
@@ -816,6 +851,8 @@ N개의 정수가 주어진다. 이때, 최솟값과 최댓값을 구하는 프�
 | 예제 입력 1 | 예제 출력 1 |
 | --- | --- |
 | 5<br>20 10 35 30 7 | 7 35 |
+
+**🔑 풀이**
 
 ```java
 import java.util.Arrays;
@@ -862,6 +899,8 @@ public class Main {
 | --- | --- |
 | 5 | &#42;<br>&#42;&#42;<br>&#42;&#42;&#42;<br>&#42;&#42;&#42;&#42;<br>&#42;&#42;&#42;&#42;&#42;<br> |
 
+**🔑 풀이**
+
 ```java
 import java.util.Scanner;
 
@@ -904,6 +943,8 @@ public class Main {
 | 예제 입력 1 | 예제 출력 1 |
 | --- | --- |
 | 5 | &nbsp;&nbsp;&nbsp;&nbsp;&#42;<br>&nbsp;&nbsp;&nbsp;&#42;&#42;<br>&nbsp;&nbsp;&#42;&#42;&#42;<br>&nbsp;&#42;&#42;&#42;&#42;<br>&#42;&#42;&#42;&#42;&#42; |
+
+**🔑 풀이**
 
 ```java
 import java.util.Scanner;
@@ -948,6 +989,8 @@ public class Main {
 | --- | --- |
 | 5 | &#42;&#42;&#42;&#42;&#42;<br>&#42;&#42;&#42;&#42;<br>&#42;&#42;&#42;<br>&#42;&#42;<br>&#42; |
 
+**🔑 풀이**
+
 ```java
 import java.util.Scanner;
 
@@ -989,6 +1032,8 @@ public class Main {
 | 예제 입력 1 | 예제 출력 1 |
 | --- | --- |
 | 5 | &#42;&#42;&#42;&#42;&#42;<br>&nbsp;&#42;&#42;&#42;&#42;<br>&nbsp;&nbsp;&#42;&#42;&#42;<br>&nbsp;&nbsp;&nbsp;&#42;&#42;<br>&nbsp;&nbsp;&nbsp;&nbsp;&#42; |
+
+**🔑 풀이**
 
 ```java
 import java.util.Scanner;
@@ -1035,6 +1080,8 @@ public class Main {
 | --- | --- |
 | 5 | &nbsp;&nbsp;&nbsp;&nbsp;&#42;<br>&nbsp;&nbsp;&nbsp;&#42;&#42;&#42;<br>&nbsp;&nbsp;&#42;&#42;&#42;&#42;&#42;<br>&nbsp;&#42;&#42;&#42;&#42;&#42;&#42;&#42;<br>&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42; |
 
+**🔑 풀이**
+
 ```java
 import java.util.Scanner;
 
@@ -1078,6 +1125,8 @@ public class Main {
 | 예제 입력 1 | 예제 출력 1 |
 | --- | --- |
 | 5 | &#42;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#42;<br>&#42;&#42;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#42;&#42;<br>&#42;&#42;&#42;&nbsp;&nbsp;&nbsp;&nbsp;&#42;&#42;&#42;<br>&#42;&#42;&#42;&#42;&nbsp;&nbsp;&#42;&#42;&#42;&#42;<br>&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;<br>&#42;&#42;&#42;&#42;&nbsp;&nbsp;&#42;&#42;&#42;&#42;<br>&#42;&#42;&#42;&nbsp;&nbsp;&nbsp;&nbsp;&#42;&#42;&#42;<br>&#42;&#42;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#42;&#42;<br>&#42;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#42; |
+
+**🔑 풀이**
 
 ```java
 public class Main {
@@ -1137,6 +1186,8 @@ public class Main {
 | --- | --- |
 | 5 | &nbsp;&nbsp;&#42;<br>&nbsp;&#42;&#42;<br>&#42;&#42;&#42;<br>&nbsp;&#42;&#42;<br>&nbsp;&nbsp;&#42; |
 
+**🔑 풀이**
+
 ```java
 import java.util.Scanner;
 
@@ -1190,6 +1241,8 @@ public class Main {
 | 예제 입력 1 | 예제 출력 1 |
 | --- | --- |
 | 5 | &#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;<br>&nbsp;&#42;&#42;&#42;&#42;&#42;&#42;&#42;<br>&nbsp;&nbsp;&#42;&#42;&#42;&#42;&#42;<br>&nbsp;&nbsp;&nbsp;&#42;&#42;&#42;<br>&nbsp;&nbsp;&nbsp;&nbsp;&#42;<br>&nbsp;&nbsp;&nbsp;&#42;&#42;&#42;<br>&nbsp;&nbsp;&#42;&#42;&#42;&#42;&#42;<br>&nbsp;&#42;&#42;&#42;&#42;&#42;&#42;&#42;<br>&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42; |
+
+**🔑 풀이**
 
 ```java
 import java.util.Scanner;
@@ -1263,6 +1316,8 @@ public class Main {
 | --- | --- |
 | 4 | &nbsp;&nbsp;&nbsp;&#42;<br>&nbsp;&nbsp;&#42;&nbsp;&#42;<br>&nbsp;&#42;&nbsp;&#42;&nbsp;&#42;<br>&#42;&nbsp;&#42;&nbsp;&#42;&nbsp;&#42; |
 
+**🔑 풀이**
+
 ```java
 import java.util.Scanner;
 
@@ -1320,6 +1375,8 @@ public class Main {
 | 예제 입력 4 | 예제 출력 4 |
 | --- | --- |
 | 4 | &nbsp;&nbsp;&nbsp;&#42;<br>&nbsp;&nbsp;&#42;&nbsp;&#42;<br>&nbsp;&#42;&nbsp;&nbsp;&nbsp;&#42;<br>&#42;&#42;&#42;&#42;&#42;&#42;&#42; |
+
+**🔑 풀이**
 
 ```java
 import java.util.Scanner;
