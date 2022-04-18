@@ -21,7 +21,7 @@
     border-radius 6px
     overflow auto
     code
-      color #fff
+      color $code
       padding 0
       background-color transparent
       border-radius 0
@@ -135,3 +135,7 @@ div[class~="language-php"]:before
   content "php"
 
 @import '~prismjs/themes/prism-tomorrow.css'
+.token.comment
+  font-style oblique
+.token.punctuation
+  color $code
