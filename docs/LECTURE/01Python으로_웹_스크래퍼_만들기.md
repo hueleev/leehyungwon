@@ -10,11 +10,12 @@ meta:
 # 🎈 Python으로 웹 스크래퍼 만들기 (nomad coders/노마드코더)
 
 심심해서 들어보는 Python 강의 .. 👓 
-2022-04 강의를 들었을 때, indeed 사이트 마크업 구조가 좀 달라졌고, stackoverflow job 사이트는 찾을 수 없었다,,
 
-우선 강의를 듣고, 바뀐 HTML을 배운대로 스크랩핑 하였다. <u>따라서 강의에 작성된 코드와 다를 수 있음!</u>
+2022-04 강의를 들었을 때, indeed 사이트 마크업 구조가 좀 달라졌고, stackoverflow job 사이트는 찾을 수 없었다,, 대신 `https://stackoverflow.com/jobs/companies` 사이트를 파싱해보려고 한다.
 
-강의 소제목 뽑으려고 스크랩핑 활용하여 아래와 같이 제목을 뽑았다 !
+<u>따라서 강의에 작성된 코드와 다를 수 있음!</u>
+
+우선 강의를 듣고, 바뀐 HTML을 배운대로 스크랩핑 하였다. 강의 소제목 뽑으려고 스크랩핑 활용하여 아래와 같이 제목을 뽑았다 !
 
 `beautiful soup` 유용한 거 같다. 잘 써봐야지.
 
@@ -1049,55 +1050,680 @@ Scrapping page 4
 [{'id': 'b6d26975703d41c2', 'title': 'Python - Machine Learning SME', 'company': 'Envision', 'location': 'Remote', 'link': 'https://www.indeed.com/viewjob?jk=b6d26975703d41c2'}, {'id': '5a91a49780ab17df', 'title': 'Sr Data Scientist', 'company': 'Zillow', 'location': 'Remote', 'link': 'https://www.indeed.com/viewjob?jk=5a91a49780ab17df'}, {'id': '2bcd843c58159429', 'title': 'Software Engineer (Early Career)', 'company': 'Apple', 'location': None, 'link': 'https://www.indeed.com/viewjob?jk=2bcd843c58159429'}, {'id': '6d0ab231885eac14', 'title': 'GIS Analyst', 'company': 'Bruce Harris & Associates, Inc', 'location': 'Remote', 'link': 'https://www.indeed.com/viewjob?jk=6d0ab231885eac14'}, {'id': '788dc9dd8ade27a6', 'title': 'Python/Django Developer', 'company': 'Delta', 'location': None, 'link': 'https://www.indeed.com/viewjob?jk=788dc9dd8ade27a6'}, {'id': 'ebcc2ad72eda66fb', 'title': 'QT Software Engineer (Python and C++)', 'company': 'TriSearch', 'location': 'Remote', 'link': 'https://www.indeed.com/viewjob?jk=ebcc2ad72eda66fb'}, {'id': '57654f0e7ccfc3b7', 'title': ' ... 생략
 ```
 
-## .. 🤐 progress
-
 ## 2.9 StackOverflow Pages
 
-<h3>🔸 py</h3>
+`https://stackoverflow.com/jobs/companies?q=python` 를 파싱해보자 ! python으로 검색하는 url이다.
+
+우선 stackoverflow와 구분하기 위해서 `indeed.py`, `so.py` 로 나눠주었고, `main.py`코드를 좀 정리하였다.
+
+`so.py`를 테스트하기 위해 테스트를 위해 기존 indeed 파싱 메소드는 주석처리 해주었고, `pagination`의 `a` 태그를 `find_all`로 우선 가져왔다.
+
+<h3>🔸 main.py</h3>
+
+```py
+from indeed import get_jobs as get_indeed_jobs
+from so import get_jobs as get_so_jobs
+
+#indeed_jobs = get_indeed_jobs()
+so_jobs = get_so_jobs()
+```
+
+<h3>🔸 indeed.py</h3>
+
+```py
+import requests
+from bs4 import BeautifulSoup
+
+LIMIT = 50
+URL = f"https://www.indeed.com/jobs?q=python&limit={LIMIT}"
+
+# pagination 중 마지막 페이지 번호
+def get_last_page():
+  result = requests.get(URL)
+  
+  soup = BeautifulSoup(result.text, 'html.parser')
+  
+  # html내 마지막 페이지 찾기
+  pagination = soup.find("div", {"class": "pagination"})
+  
+  links = pagination.find_all('a')
+  
+  pages = []
+  for link in links[:-1]:
+    pages.append(int(link.string))
+  
+  max_page = pages[-1]
+  return max_page
+
+# 회사 정보 파싱
+def extract_job(html):
+  resultContent = html.find("div", {"class": "job_seen_beacon"}).find("td", {"class": "resultContent"})
+  # id
+  id = html["data-jk"]
+  # title
+  title = resultContent.find("h2", {"class": "jobTitle"}).find("span", {"class": None})["title"]
+  # company
+  company = resultContent.find("div", {"class": "company_location"}).find("span", {"class": "companyName"}).string
+  # location
+  location = resultContent.find("div", {"class": "companyLocation"}).string
+  
+  return {'title': title, 'company': company, 'location': location, 'link': f"https://www.indeed.com/viewjob?jk={id}"}
+
+# 각 page의 start index 구하여 request 날려보기
+def extract_jobs(last_page):
+  jobs = []
+  # 모든 페이지 직업 조회
+  for page in range(last_page):
+    print(f"Scrapping page {page}")
+    result = requests.get(f"{URL}&start={page*LIMIT}")
+    soup = BeautifulSoup(result.text, 'html.parser')
+    results = soup.find_all("a", {"class": "tapItem"})
+    for result in results:
+      job = extract_job(result)
+      jobs.append(job)
+  return jobs
+
+def get_jobs():
+  last_page = get_last_page()
+  jobs = extract_jobs(last_page)
+  return jobs
+```
+
+<h3>🔸 so.py</h3>
+
+```py
+import requests
+from bs4 import BeautifulSoup
+
+URL =  f"https://stackoverflow.com/jobs/companies?q=python"
+
+def get_last_page():
+  result = requests.get(URL)
+  soup = BeautifulSoup(result.text, "html.parser")
+  pages = soup.find("div", {"class": "s-pagination"}).find_all("a")
+  print(pages)
+  
+def get_jobs():
+  last_page = get_last_page()
+  return []
+```
 
 <h3>🔹 console</h3>
+
+```md
+[<a class="s-pagination--item is-selected" href="/jobs/companies?q=python" title="page 1 of 21">
+<span>1</span>
+</a>, <a class="s-pagination--item" href="/jobs/companies?q=python&amp;pg=2" title="page 2 of 21">
+<span>2</span>
+</a>, <a class="s-pagination--item" href="/jobs/companies?q=python&amp;pg=3" title="page 3 of 21">
+<span>3</span>
+</a>, <a class="s-pagination--item" href="/jobs/companies?q=python&amp;pg=4" title="page 4 of 21">
+<span>4</span>
+</a>, <a class="s-pagination--item" href="/jobs/companies?q=python&amp;pg=21" title="page 21 of 21">
+<span>21</span>
+</a>, <a class="s-pagination--item" href="/jobs/companies?q=python&amp;pg=2" title="page 2 of 21">
+<span>next</span><i class="material-icons">chevron_right</i>
+</a>]
+```
 
 ## 2.10 StackOverflow extract jobs
 
-<h3>🔸 py</h3>
+::: tip strip
+`get_text(strip=True)` 를 사용하면 text를 가져옴과 동시에 앞뒤 공백을 잘라준다.
+[참고](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#get-text)
+
+```py
+markup = '<a href="http://example.com/">\nI linked to <i>example.com</i>\n</a>'
+soup = BeautifulSoup(markup, 'html.parser')
+
+soup.get_text()
+'\nI linked to example.com\n'
+soup.i.get_text()
+'example.com'
+
+soup.get_text("|", strip=True)
+'I linked to|example.com'
+```
+:::
+
+<h3>🔸 so.py</h3>
+
+```py
+import requests
+from bs4 import BeautifulSoup
+
+URL =  f"https://stackoverflow.com/jobs/companies?q=python"
+
+# 마지막 페이지 가져오기
+def get_last_page():
+  result = requests.get(URL)
+  soup = BeautifulSoup(result.text, "html.parser")
+  pages = soup.find("div", {"class": "s-pagination"}).find_all("a")
+  # 마지막(-1)은 next버튼이므로 마지막에서 2번째거(-2)가 last page
+  # strip=True를 활용하여 앞뒤 공백 자르기
+  last_page = pages[-2].get_text(strip=True) 
+  return int(last_page)
+
+# 회사 가져오기
+def extract_companies(last_page):
+  companies = []
+  # last page의 개수만큼 배열 만들어서 for문 돌리기
+  for page in range(last_page):
+    result = requests.get(f"{URL}&pg={page + 1}")
+    soup = BeautifulSoup(result.text, "html.parser")
+    results = soup.find_all("div", {"class": "-company"})
+    for result in results:
+      print(result.find("div", {"class": "dismiss-trigger"})["data-id"])
+   
+def get_jobs():
+  last_page = get_last_page()
+  companies = extract_companies(last_page)
+  return companies
+```
 
 <h3>🔹 console</h3>
 
-## 2.11 StackOverflow extract job
+```md
+31152
+17914
+26760
+32154
+3060
+...
+중략
+...
+32169
+4603
+32176
+23691
+20917
+```
 
-<h3>🔸 py</h3>
+## 2.11~12 StackOverflow extract job
+
+회사 정보를 가져와 파싱해주었다.
+
+::: tip recursive
+`find_all("title", recursive=False)`를 사용하면 첫단계만 찾고, 그 안에 깊숙한 태그는 찾지 않는다.
+[참고](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#the-recursive-argument)
+
+```py
+soup.html.find_all("title")
+# [<title>The Dormouse's story</title>]
+
+soup.html.find_all("title", recursive=False)
+# []
+```
+:::
+
+<h3>🔸 indeed.py</h3>
+
+```py
+import requests
+from bs4 import BeautifulSoup
+
+URL =  f"https://stackoverflow.com/jobs/companies?q=python"
+
+# 마지막 페이지 가져오기
+def get_last_page():
+  result = requests.get(URL)
+  soup = BeautifulSoup(result.text, "html.parser")
+  pages = soup.find("div", {"class": "s-pagination"}).find_all("a")
+  # 마지막(-1)은 next버튼이므로 마지막에서 2번째거(-2)가 last page
+  # strip=True를 활용하여 앞뒤 공백 자르기
+  last_page = pages[-2].get_text(strip=True) 
+  return int(last_page)
+
+def extract_company(html):
+  content = html.find("div", {"class": "flex--item fl1 text mb0"})
+  # company
+  company = content.find("h2").find("a", {"class": "s-link"}).string
+
+  location, industry = content.find_all("div", {"class": "flex--item fc-black-500 fs-body1"})
+  # location
+  location = location.get_text(strip=True)
+  # industry
+  industry = industry.get_text(strip=True)
+  print(location, industry)
+  return {"company": company, "location": location, "industry": industry}
+  
+  
+# 회사 가져오기
+def extract_companies(last_page):
+  companies = []
+  # last page의 개수만큼 배열 만들어서 for문 돌리기
+  for page in range(last_page):
+    result = requests.get(f"{URL}&pg={page + 1}")
+    soup = BeautifulSoup(result.text, "html.parser")
+    results = soup.find_all("div", {"class": "-company"})
+    for result in results:
+      company = extract_company(result)
+      companies.append(company)
+  return companies
+  
+def get_jobs():
+  last_page = get_last_page()
+  companies = extract_companies(last_page)
+  return companies
+```
 
 <h3>🔹 console</h3>
 
-## 2.12 StackOverflow extract job part Two
-
-<h3>🔸 py</h3>
-
-<h3>🔹 console</h3>
+```md
+Edinburgh; Beirut; Bozeman Cloud Computing, Education Technology, SaaS
+Dublin 1 Agile Software Development, Cloud-Based Solutions, Computer Software
+München Computer Vision, Image Guided Surgery, Medical Imaging
+United States Cybersecurity, Healthcare
+Elkridge; Linthicum Heights; Vienna Computer Software
+...
+중략
+...
+No office location Retail, Technical Services, Web Technology
+Fulton Business to Business, Security Software
+No office location Bioinformatics, Computer Software, Digital Health
+No office location Agile Software Development, Software Development / Engineering, Technology Staffing
+Berlin Agile Software Development, Automotive
+```
 
 ## 2.13 StackOverflow Finish
 
-<h3>🔸 py</h3>
+`indeed`와 `stackoverflow` 에서 파싱한 것들을 합쳐주자.
+
+<h3>🔸 main.py</h3>
+
+```py
+from indeed import get_jobs as get_indeed_jobs
+from so import get_jobs as get_so_jobs
+
+indeed_jobs = get_indeed_jobs()
+so_jobs = get_so_jobs()
+
+jobs = so_jobs + indeed_jobs
+```
+
+각각 scrapping 성공여부를 확인하기 위해 아래와 같이 for문안에 `print`해주자
+
+<h3>🔸 indeed.py</h3>
+
+```py
+.
+.
+.
+# 각 page의 start index 구하여 request 날려보기
+def extract_jobs(last_page):
+  jobs = []
+  # 모든 페이지 직업 조회
+  for page in range(last_page):
+    print(f"Scrapping ID: Page: {page}")
+.
+.
+.
+```
+
+<h3>🔸 so.py</h3>
+
+```py
+.
+.
+.
+# 회사 가져오기
+def extract_companies(last_page):
+  companies = []
+  # last page의 개수만큼 배열 만들어서 for문 돌리기
+  for page in range(last_page):
+    print(f"Scrapping SO: Page: {page}")
+.
+.
+.
+
+```
 
 <h3>🔹 console</h3>
+
+```md
+Scrapping ID: Page: 0
+Scrapping ID: Page: 1
+Scrapping ID: Page: 2
+Scrapping ID: Page: 3
+Scrapping ID: Page: 4
+Scrapping SO: Page: 0
+Scrapping SO: Page: 1
+Scrapping SO: Page: 2
+Scrapping SO: Page: 3
+Scrapping SO: Page: 4
+Scrapping SO: Page: 5
+Scrapping SO: Page: 6
+Scrapping SO: Page: 7
+Scrapping SO: Page: 8
+Scrapping SO: Page: 9
+Scrapping SO: Page: 10
+Scrapping SO: Page: 11
+Scrapping SO: Page: 12
+Scrapping SO: Page: 13
+Scrapping SO: Page: 14
+Scrapping SO: Page: 15
+Scrapping SO: Page: 16
+Scrapping SO: Page: 17
+Scrapping SO: Page: 18
+Scrapping SO: Page: 19
+Scrapping SO: Page: 20
+```
 
 ## 2.14 What is CSV
 
-<h3>🔸 py</h3>
+<h3> CSV : Comma Separated Values</h3>
 
-<h3>🔹 console</h3>
+* vsCode 에서 `ExcelViewer` 플러그인을 설치한다.
+
+![vuepress](../.vuepress/public/img/lecture/01/1.png)
+
+* we.csv 파일을 생성한다.
+
+```csv
+name, last Name, age, gender
+nico, serrano, 12, male
+nico, serrano, 12, male
+nico, serrano, 12, male
+```
+
+* we.csv 파일을 vsCode에서 preview로 열어본다.
+
+![vuepress](../.vuepress/public/img/lecture/01/2.png)
+
+* google spreadsheet에서 파일을 업로드해본다. 
+
+![vuepress](../.vuepress/public/img/lecture/01/3.png)
+
+임의로 아래와 같이 `save.py` 파일 생성
+
+<h3>🔸 main.py</h3>
+
+```py
+from indeed import get_jobs as get_indeed_jobs
+from so import get_jobs as get_so_jobs
+from save import save_to_file
+
+indeed_jobs = get_indeed_jobs()
+so_jobs = get_so_jobs()
+
+jobs = so_jobs + indeed_jobs
+save_to_file(jobs)
+```
+
+<h3>🔸 save.py</h3>
+
+```py
+import csv
+
+def save_to_file(jobs):
+  return 
+```
 
 ## 2.15 Saving to CSV
 
-<h3>🔸 py</h3>
+<h3>🔸 main.py</h3>
 
-<h3>🔹 console</h3>
+``` py
+from indeed import get_jobs as get_indeed_jobs
+from so import get_jobs as get_so_jobs
+from save import save_to_file
+
+indeed_jobs = get_indeed_jobs()
+#so_jobs = get_so_jobs()
+
+jobs = indeed_jobs
+save_to_file(jobs)
+```
+
+<h3>🔸 save.py</h3>
+
+```py
+import csv
+
+def save_to_file(jobs):
+  file = open("jobs.csv", mode="w")
+  writer = csv.writer(file)
+  # 헤더줄 생성
+  writer.writerow(["title", "company", "location", "link"])
+  for job in jobs:
+    # dict에서 values만 가져오면 dict_values가 type임
+    # 따라서 list로 cast 해준다
+    writer.writerow(list(job.values()))
+  return 
+```
+
+<h3>🔹 jobs.csv</h3>
+
+```csv
+title,company,location,link
+Remote Python Developer,CTI Consulting,,https://www.indeed.com/viewjob?jk=75422ff0a5cfbe28
+Python Developer,Aquatic Capital Management,"Remote in Chicago, IL",https://www.indeed.com/viewjob?jk=5bdb3c2265c60c4a
+Senior Python Developer,Gallup,,https://www.indeed.com/viewjob?jk=b3a32bc1a87689e7
+C++/Python Developer,FIIDUS,Remote,https://www.indeed.com/viewjob?jk=3720520a9b3f386f
+Informatica for Google 
+.
+.
+.
+```
 
 ## 2.16 OMG THIS IS AWESOME
 
-<h3>🔸 py</h3>
+마지막으로 코드 정리를 하면 아래와 같이 되며, csv 파일 두개가 생성되는 것을 확인할 수 있다.
+
+<h3>🔸 main.py</h3>
+
+```py
+from indeed import get_jobs as get_indeed_jobs
+from so import get_companies as get_so_companies
+from save import save_to_file_jobs, save_to_file_companies
+
+indeed_jobs = get_indeed_jobs()
+so_companies = get_so_companies()
+
+save_to_file_jobs(indeed_jobs)
+save_to_file_companies(so_companies)
+```
+
+<h3>🔸 indeed.py</h3>
+
+```py
+import requests
+from bs4 import BeautifulSoup
+
+LIMIT = 50
+URL = f"https://www.indeed.com/jobs?q=python&limit={LIMIT}"
+
+# pagination 중 마지막 페이지 번호
+def get_last_page():
+  result = requests.get(URL)
+  
+  soup = BeautifulSoup(result.text, 'html.parser')
+  
+  # html내 마지막 페이지 찾기
+  pagination = soup.find("div", {"class": "pagination"})
+  
+  links = pagination.find_all('a')
+  
+  pages = []
+  for link in links[:-1]:
+    pages.append(int(link.string))
+  
+  max_page = pages[-1]
+  return max_page
+
+# 회사 정보 파싱
+def extract_job(html):
+  resultContent = html.find("div", {"class": "job_seen_beacon"}).find("td", {"class": "resultContent"})
+  # id
+  id = html["data-jk"]
+  # title
+  title = resultContent.find("h2", {"class": "jobTitle"}).find("span", {"class": None})["title"]
+  # company
+  company = resultContent.find("div", {"class": "company_location"}).find("span", {"class": "companyName"}).string
+  # location
+  location = resultContent.find("div", {"class": "companyLocation"}).string
+  
+  return {'title': title, 'company': company, 'location': location, 'link': f"https://www.indeed.com/viewjob?jk={id}"}
+
+# 각 page의 start index 구하여 request 날려보기
+def extract_jobs(last_page):
+  jobs = []
+  # 모든 페이지 직업 조회
+  for page in range(last_page):
+    print(f"Scrapping ID: Page: {page}")
+    result = requests.get(f"{URL}&start={page*LIMIT}")
+    soup = BeautifulSoup(result.text, 'html.parser')
+    results = soup.find_all("a", {"class": "tapItem"})
+    for result in results:
+      job = extract_job(result)
+      jobs.append(job)
+  return jobs
+
+def get_jobs():
+  last_page = get_last_page()
+  jobs = extract_jobs(last_page)
+  return jobs
+```
+
+<h3>🔸 so.py</h3>
+
+```py
+import requests
+from bs4 import BeautifulSoup
+
+URL =  f"https://stackoverflow.com/jobs/companies?q=python"
+
+# 마지막 페이지 가져오기
+def get_last_page():
+  result = requests.get(URL)
+  soup = BeautifulSoup(result.text, "html.parser")
+  pages = soup.find("div", {"class": "s-pagination"}).find_all("a")
+  # 마지막(-1)은 next버튼이므로 마지막에서 2번째거(-2)가 last page
+  # strip=True를 활용하여 앞뒤 공백 자르기
+  last_page = pages[-2].get_text(strip=True) 
+  return int(last_page)
+
+def extract_company(html):
+  content = html.find("div", {"class": "flex--item fl1 text mb0"})
+  # company
+  company = content.find("h2").find("a", {"class": "s-link"}).string
+
+  location, industry = content.find_all("div", {"class": "flex--item fc-black-500 fs-body1"})
+  # location
+  location = location.get_text(strip=True)
+  # industry
+  industry = industry.get_text(strip=True)
+  
+  # link
+  link = content.find("h2").find("a", {"class": "s-link"})['href']
+
+  return {"company": company, "location": location, "industry": industry, "apply_link": f"https://stackoverflow.com{link}"}
+  
+  
+# 회사 가져오기
+def extract_companies(last_page):
+  companies = []
+  # last page의 개수만큼 배열 만들어서 for문 돌리기
+  for page in range(last_page):
+    print(f"Scrapping SO: Page: {page}")
+    result = requests.get(f"{URL}&pg={page + 1}")
+    soup = BeautifulSoup(result.text, "html.parser")
+    results = soup.find_all("div", {"class": "-company"})
+    for result in results:
+      company = extract_company(result)
+      companies.append(company)
+  return companies
+  
+def get_companies():
+  last_page = get_last_page()
+  companies = extract_companies(last_page)
+  return companies
+```
+
+<h3>🔸 save.py</h3>
+
+```py
+import csv
+
+def save_to_file_jobs(jobs):
+  file = open("jobs.csv", mode="w")
+  writer = csv.writer(file)
+  # 헤더줄 생성
+  writer.writerow(["title", "company", "location", "link"])
+  for job in jobs:
+    # dict에서 values만 가져오면 dict_values가 type임
+    # 따라서 list로 cast 해준다
+    writer.writerow(list(job.values()))
+  return 
+  
+def save_to_file_companies(companies):
+  file = open("companies.csv", mode="w")
+  writer = csv.writer(file)
+  # 헤더줄 생성
+  writer.writerow(["company", "location", "industry", "apply_link"])
+  for company in companies:
+    # dict에서 values만 가져오면 dict_values가 type임
+    # 따라서 list로 cast 해준다
+    writer.writerow(list(company.values()))
+  return 
+```
 
 <h3>🔹 console</h3>
+
+```md
+Scrapping ID: Page: 0
+Scrapping ID: Page: 1
+Scrapping ID: Page: 2
+Scrapping ID: Page: 3
+Scrapping ID: Page: 4
+Scrapping SO: Page: 0
+Scrapping SO: Page: 1
+Scrapping SO: Page: 2
+Scrapping SO: Page: 3
+Scrapping SO: Page: 4
+Scrapping SO: Page: 5
+Scrapping SO: Page: 6
+Scrapping SO: Page: 7
+Scrapping SO: Page: 8
+Scrapping SO: Page: 9
+Scrapping SO: Page: 10
+Scrapping SO: Page: 11
+Scrapping SO: Page: 12
+Scrapping SO: Page: 13
+Scrapping SO: Page: 14
+Scrapping SO: Page: 15
+Scrapping SO: Page: 16
+Scrapping SO: Page: 17
+Scrapping SO: Page: 18
+Scrapping SO: Page: 19
+Scrapping SO: Page: 20
+```
+
+<h3>🔹 jobs.csv</h3>
+
+```md
+title,company,location,link
+"Security Engineer- AWS, Python",The Getch,Remote,https://www.indeed.com/viewjob?jk=5fba88b67d1b72dc
+Python Developer,Paktolus,Remote,https://www.indeed.com/viewjob?jk=df1cce3cc988f374
+Python Developer,Simplified IT Solutions,Remote,https://www.indeed.com/viewjob?jk=7e3a3e84485bb544
+Python Developer,EMR CPR LLC,"Austin, TX",https://www.indeed.com/viewjob?jk=52298adb7d458010
+Senior Python AWS Developer,DataAxxis,,https://www.indeed.com/viewjob?jk=cd01de5c4adc7ac4
+Associate Solutions Architect – Early Career 2022 (US),"Amazon Web Services, Inc.",,https://www.indeed.com/viewjob?jk=3905541e1957ec4a
+Python Developer,Oremda Infotech Inc.,Remote,https://www.indeed.com/viewjob?jk=2c04530f755a2932
+Senior Software Engineer,University of Nebraska Medical Center,,https://www.indeed.com/viewjob?jk=067a8cf9dccbdc70
+...생략
+```
+
+<h3>🔹 companies.csv</h3>
+
+```md
+company,location,industry,apply_link
+Administrate,Edinburgh; Beirut; Bozeman,"Cloud Computing, Education Technology, SaaS",https://stackoverflow.com/jobs/companies/administrate?c=MYHq0mvrMlWD3iKY&q=python
+"Arista Networks, Inc",Dublin 1,"Agile Software Development, Cloud-Based Solutions, Computer Software",https://stackoverflow.com/jobs/companies/www-arista-com?
+...생략
+```
+
+## .. 🤐 progress
 
 # ⚡ 3. GET READY FOR DJANGO
 
@@ -1210,7 +1836,6 @@ Scrapping page 4
 <h3>🔸 py</h3>
 
 <h3>🔹 console</h3>
-
 
 ## Reference
 
