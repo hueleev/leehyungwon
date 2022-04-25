@@ -1415,7 +1415,7 @@ Scrapping SO: Page: 20
 
 * vsCode 에서 `ExcelViewer` 플러그인을 설치한다.
 
-<!-- ![vuepress](../.vuepress/public/img/lecture/01/1.png) -->
+![vuepress](../.vuepress/public/img/lecture/01/0.png)
 
 * we.csv 파일을 생성한다.
 
@@ -1428,11 +1428,11 @@ nico, serrano, 12, male
 
 * we.csv 파일을 vsCode에서 preview로 열어본다.
 
-<!-- ![vuepress](../.vuepress/public/img/lecture/01/2.png) -->
+![vuepress](../.vuepress/public/img/lecture/01/1.png)
 
 * google spreadsheet에서 파일을 업로드해본다. 
 
-<!-- ![vuepress](../.vuepress/public/img/lecture/01/3.png) -->
+![vuepress](../.vuepress/public/img/lecture/01/2.png)
 
 임의로 아래와 같이 `save.py` 파일 생성
 
