@@ -1510,6 +1510,8 @@ Informatica for Google
 
 마지막으로 코드 정리를 하면 아래와 같이 되며, csv 파일 두개가 생성되는 것을 확인할 수 있다.
 
+ [leehyungwon_python_scrapper_replit](https://replit.com/@HYUNGWONLEE/Python-scrapper)
+
 <h3>🔸 main.py</h3>
 
 ```py
@@ -1723,51 +1725,221 @@ Administrate,Edinburgh; Beirut; Bozeman,"Cloud Computing, Education Technology, 
 ...생략
 ```
 
-## .. 🤐 progress
-
 # ⚡ 3. GET READY FOR DJANGO
 
 ## 3.0 Django is AWESOME
 
-<h3>🔸 py</h3>
-
-<h3>🔹 console</h3>
+[Django](https://www.djangoproject.com/) 소개 !
 
 ## 3.1 *args **kwargs
 
+Django는 무한 arguments(*args)를 줄 수 있다. 하지만 key=value인 argument를 주려면 `**kwargs`를 써야한다. `keyword arguments`의 축약어이다.
+
 <h3>🔸 py</h3>
 
+```py
+def plus(a, b, *args, **kwargs): 
+  print(args)
+  print(kwargs) # key=value값은 keyword argument로 받아야함
+  return a + b
+
+plus(1, 2, 3, 4, 5, 1, 2, 3, 4, 3, 4, 5, hello=True, bye=True)
+```
+
 <h3>🔹 console</h3>
+
+```md
+(3, 4, 5, 1, 2, 3, 4, 3, 4, 5)
+{'hello': True, 'bye': True}
+```
+
+무한 계산기를 만들면 아래와 같다.
+
+<h3>🔸 py</h3>
+
+```py
+def plus(*args):
+  result = 0
+  for number in args:
+    result += number
+  print(result)
+
+plus(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+```
+
+<h3>🔹 console</h3>
+
+```md
+55
+```
 
 ## 3.2 Intro to Object Oriented Programming
 
 <h3>🔸 py</h3>
 
+```py
+# 청사진 (blueprint)
+class Car():
+  wheels = 4
+  doors = 4
+  windows = 4
+  seats = 4
+
+porche = Car() #instance
+porche.color = "Red"
+print(porche.windows, porche.color)
+
+ferrari = Car()
+ferrari.color = "Yellow"
+print(ferrari.windows, ferrari.color)
+
+mini = Car()
+mini.color = "White"
+```
+
 <h3>🔹 console</h3>
+
+```md
+4 Red
+4 Yellow
+```
 
 ## 3.3 Methods part One
 
+::: tip method
+class 안에 있는 function을 method라고 한다.
+전역으로 선언됐을 경우에는 function / 클래스 안에 선언된 경우에는 method
+
+python은 모든 method에 1개의 argument를 필수로 갖는다.
+`method`의 첫번째 argument는 method를 호출하는 자기 자신, instance이다.
+:::
+
 <h3>🔸 py</h3>
 
+```py
+# 청사진 (blueprint)
+class Car():
+  wheels = 4
+  doors = 4
+  windows = 4
+  seats = 4
+  # method (클래스 안에 있으면 method/밖이면 function)
+  def start(self):
+    print(self.doors)
+    print(self.color)
+    print("I started")
+    
+porche = Car()
+porche.color = "RED"
+porche.start()
+```
+
 <h3>🔹 console</h3>
+
+```md
+4
+RED
+I started
+```
 
 ## 3.4 Methods part Two
 
 <h3>🔸 py</h3>
 
+```py
+# 청사진 (blueprint)
+class Car():
+  # init으로 바꿔주는 게 바람직함
+  def __init__(self, **kwargs):
+    # print(kwargs)
+    self.wheels = 4
+    self.doors = 4
+    self.windows = 4
+    self.seats = 4
+    # 값이 없을 경우, 두번째 인자 할당
+    self.color = kwargs.get("color", "black")
+    self.price = kwargs.get("price", "$20")
+    
+  # method override
+  def __str__(self):
+    return f"Car with {self.wheels} wheels"
+
+# dir 클래스 안 모든것들은 list로 보여준다.
+# print(dir(Car))
+
+porche = Car(color="green", price="$40")
+# porche를 호출할때마다 기본 메소드인 __str__을 호출
+print(porche)
+print(porche.color, porche.price)
+
+mini = Car()
+print(mini.color, mini.price)
+```
+
 <h3>🔹 console</h3>
+
+```md
+Car with 4 wheels
+green $40
+black $20
+```
 
 ## 3.5 Extending Classes
 
 <h3>🔸 py</h3>
 
+```py
+# 청사진 (blueprint)
+class Car():
+  # init으로 바꿔주는 게 바람직함
+  def __init__(self, **kwargs):
+    # print(kwargs)
+    self.wheels = 4
+    self.doors = 4
+    self.windows = 4
+    self.seats = 4
+    # 값이 없을 경우, 두번째 인자 할당
+    self.color = kwargs.get("color", "black")
+    self.price = kwargs.get("price", "$20")
+    
+  # method override
+  def __str__(self):
+    return f"Car with {self.wheels} wheels"
+
+# extends Car class
+class Convertible(Car):
+  # 부모 init에 추가 작업
+  def __init__(self, **kwargs):
+    super().__init__(**kwargs) # 부모 클래스 호출
+    self.time = kwargs.get("time", 10)
+  # add method
+  def take_off(self):
+    return "taking off"
+  # override
+  def __str__(self):
+    return f"Car with no roof"
+    
+porche = Convertible(color="green", price="$40")
+
+mini = Car()
+print(porche)
+print(porche.color)
+print(porche.take_off())
+```
+
 <h3>🔹 console</h3>
+
+```md
+Car with no roof
+green
+taking off
+```
 
 ## 3.6 Whats Next
 
-<h3>🔸 py</h3>
+<h3>끝 !</h3>
 
-<h3>🔹 console</h3>
+## .. 🤐 progress
 
 # ⚡ 4. 2020 BONUS CLASS
 
@@ -1841,5 +2013,5 @@ Administrate,Edinburgh; Beirut; Bozeman,"Cloud Computing, Education Technology, 
 
 
 [Pythone으로 웹 스크래퍼 만들기](https://nomadcoders.co/python-for-beginners/lobby)
-[replit](https://replit.com/)
+[python-scrapper-replit](https://replit.com/@HYUNGWONLEE/Python-scrapper)
 [Python library](https://docs.python.org/3/library/index.html)
