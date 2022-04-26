@@ -1935,12 +1935,6 @@ green
 taking off
 ```
 
-## 3.6 Whats Next
-
-<h3>끝 !</h3>
-
-## .. 🤐 progress
-
 # ⚡ 4. 2020 BONUS CLASS
 
 ## 4.0 Welcome to 2020 Update
