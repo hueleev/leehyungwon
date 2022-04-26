@@ -2011,7 +2011,6 @@ taking off
 
 ## Reference
 
-
 [Pythone으로 웹 스크래퍼 만들기](https://nomadcoders.co/python-for-beginners/lobby)
 [python-scrapper-replit](https://replit.com/@HYUNGWONLEE/Python-scrapper)
 [Python library](https://docs.python.org/3/library/index.html)
