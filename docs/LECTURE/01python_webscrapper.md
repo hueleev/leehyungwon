@@ -1996,58 +1996,596 @@ app.run(host="0.0.0.0")
 
 <h3>🔸 py</h3>
 
-<h3>🔹 console</h3>
+```py
+from flask import Flask
+
+app = Flask("SuperScrapper")
+
+@app.route("/")
+def home():
+  return "Hello! Welcome to mi casa!"
+
+# placeholder를 받으면 사용해줘야 한다. 안그럼 error발생
+# TypeError: potato() got an unexpected keyword argument 'username'
+@app.route("/<username>")
+def potato(username):
+  return f"Hello your name is {username}"
+  
+app.run(host="0.0.0.0")
+```
+
+<h3>🔹 web</h3>
+
+![vuepress](../.vuepress/public/img/lecture/01/06.png)
+
+<b><u>`templates` 폴더 생성 후, `html`파일을 하나 만들어주자.</u></b>
+
+<h3>🔸 potato.html</h3>
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Job Search</title>
+  </head>
+  <body>
+    <h1>Job Search</h1>
+    <form>
+      <input placeholder='Search for a job' required/>
+      <button>Search</button>
+    </form>
+  </body>
+</html>
+```
+
+<h3>🔸 py</h3>
+
+```py
+from flask import Flask, render_template
+
+app = Flask("SuperScrapper")
+
+@app.route("/")
+def home():
+  return render_template("potato.html")
+
+
+app.run(host="0.0.0.0")
+```
+
+<h3>🔹 web</h3>
+
+![vuepress](../.vuepress/public/img/lecture/01/07.png)
+
+<b><u>이때, 경로를 주지 않아도 html파일을 찾아서 띄워주는데, `flask`가 저절로 찾아줘서 뜰 수 있는 거다! 신기..</u></b>
 
 ## 4.3 Forms and Query Arguments
 
-<h3>🔸 py</h3>
+`report.html` 템플릿을 하나 더 만들어주고, 검색버튼을 누르면 아래와 같이 `query`를 받아오도록 해준다.
 
-<h3>🔹 console</h3>
+받은 값을 render_template으로 `report.html`에 넘겨 `rendering`해준다.
+
+<h3>🔸 report.html</h3>
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Job Search</title>
+  </head>
+  <body>
+    <h1>Search Results</h1>
+    <h3>You are looking for {{searchingBy}}</h3>
+    <h4>{{color}}</h4>
+    </form>
+  </body>
+</html>
+```
+
+<h3>🔸 main.py</h3>
+
+```py
+from flask import Flask, render_template, request
+
+app = Flask("SuperScrapper")
+
+@app.route("/")
+def home():
+  return render_template("potato.html")
+
+@app.route("/report")
+def report():
+  word = request.args.get('word') # query 가져오기
+  return render_template("report.html", searchingBy=word, color="RED") # 값을 넘겨줌
+
+app.run(host="0.0.0.0")
+```
+
+<h3>🔹 web</h3>
+
+![vuepress](../.vuepress/public/img/lecture/01/08.png)
+![vuepress](../.vuepress/public/img/lecture/01/09.png)
 
 ## 4.4 Scrapper Integration
 
+검색어가 넘어오면 소문자로 변경하도록 수정하였다.
+
+또한 검색어 없이 `/report` url로만 접근했을 때는 `redirect`되도록 변경하였다.
+
 <h3>🔸 py</h3>
 
+```py
+from flask import Flask, render_template, request, redirect
+
+app = Flask("SuperScrapper")
+
+@app.route("/")
+def home():
+  return render_template("potato.html")
+
+@app.route("/report")
+def report():
+  word = request.args.get('word')
+  if word: # word가 있는 경우 소문자로 변경
+    word = word.lower()
+  else: # 없는 경우 홈으로 redirect
+    return redirect("/")
+  return render_template("report.html", searchingBy=word, color="RED")
+
+app.run(host="0.0.0.0")
+```
+
+이전에 만들어놓은 [scrapper](https://replit.com/@HYUNGWONLEE/Python-scrapper#main.py)를 웹사이트 `repl`에  복붙해보자. (`so.py`를 가져와 `scrapper.py` 파일로 복붙)
+
+웹사이트 scrapper `repl`에는 `requests`와 `beautifulsoup`이 없으므로 패키지 install을 해주자.
+
+`get_companies`에서 `word`를 받을 수 있게 해주고, `url`도 해당 function에서 수정해서 `get_last_page`로 넘겨준다. `extract_companies`도 `url`을 받을 수 있도록 맞춰서 수정해준다.
+
+<h3>🔸 scrapper.py</h3>
+
+```py
+import requests
+from bs4 import BeautifulSoup
+
+# 마지막 페이지 가져오기
+def get_last_page(url):
+  result = requests.get(url)
+  soup = BeautifulSoup(result.text, "html.parser")
+  pages = soup.find("div", {"class": "s-pagination"}).find_all("a")
+  # 마지막(-1)은 next버튼이므로 마지막에서 2번째거(-2)가 last page
+  # strip=True를 활용하여 앞뒤 공백 자르기
+  last_page = pages[-2].get_text(strip=True) 
+  return int(last_page)
+
+def extract_company(html):
+  content = html.find("div", {"class": "flex--item fl1 text mb0"})
+  # company
+  company = content.find("h2").find("a", {"class": "s-link"}).string
+
+  location, industry = content.find_all("div", {"class": "flex--item fc-black-500 fs-body1"})
+  # location
+  location = location.get_text(strip=True)
+  # industry
+  industry = industry.get_text(strip=True)
+  
+  # link
+  link = content.find("h2").find("a", {"class": "s-link"})['href']
+
+  return {"company": company, "location": location, "industry": industry, "apply_link": f"https://stackoverflow.com{link}"}
+  
+  
+# 회사 가져오기
+def extract_companies(last_page, url):
+  companies = []
+  # last page의 개수만큼 배열 만들어서 for문 돌리기
+  for page in range(last_page):
+    print(f"Scrapping SO: Page: {page}")
+    result = requests.get(f"{url}&pg={page + 1}")
+    soup = BeautifulSoup(result.text, "html.parser")
+    results = soup.find_all("div", {"class": "-company"})
+    for result in results:
+      company = extract_company(result)
+      companies.append(company)
+  return companies
+  
+def get_companies(word):
+  url =  f"https://stackoverflow.com/jobs/companies?q={word}"
+  last_page = get_last_page(url)
+  companies = extract_companies(last_page, url)
+  return companies
+```
+
+<h3>🔸 main.py</h3>
+
+```py
+from flask import Flask, render_template, request, redirect
+from scrapper import get_companies
+
+app = Flask("SuperScrapper")
+
+@app.route("/")
+def home():
+  return render_template("potato.html")
+
+@app.route("/report")
+def report():
+  word = request.args.get('word')
+  if word: # word가 있는 경우 소문자로 변경
+    word = word.lower()
+    comps = get_companies(word)
+    print(comps)
+  else: # 없는 경우 홈으로 redirect
+    return redirect("/")
+  return render_template("report.html", searchingBy=word, color="RED")
+
+app.run(host="0.0.0.0")
+```
+
+이제 검색을 해주면 해당 단어로 scrapping해준 결과가 print된다.
+
 <h3>🔹 console</h3>
+
+```md
+crapping SO: Page: 0
+Scrapping SO: Page: 1
+Scrapping SO: Page: 2
+Scrapping SO: Page: 3
+Scrapping SO: Page: 4
+Scrapping SO: Page: 5
+Scrapping SO: Page: 6
+Scrapping SO: Page: 7
+Scrapping SO: Page: 8
+Scrapping SO: Page: 9
+Scrapping SO: Page: 10
+Scrapping SO: Page: 11
+Scrapping SO: Page: 12
+Scrapping SO: Page: 13
+Scrapping SO: Page: 14
+Scrapping SO: Page: 15
+Scrapping SO: Page: 16
+Scrapping SO: Page: 17
+Scrapping SO: Page: 18
+[{'company': 'Branding Brand', 'location': 'Pittsburgh', 'industry': 'eCommerce, Headless Technology, Mobile Development', 'apply_link': 'https://stackoverflow.com/jobs/companies/branding-brand?c=1Cp4WgLdIRYzS4I8&q=react'}, {'company': 'WBS Gruppe', 'location': 'Berlin', 'industry': 'Education, eLearning, Online-Coaching', 'apply_link': 'https://stackoverflow.com/jobs/companies/wbs-gruppe?c=L5ITLrEQ7vTvO9BC&q=react'}, {'company': 'Amaris.AI', 'location': 'Singapore', 'industry': 'Artificial Intelligence, Consulting, Cybersecurity', 'apply_link': 'https://stackoverflow.com/jobs/companies/amarisai__suspended?c=NnKFnOhHU7mvFjJC&q=react'}, {'company': 'Pragmateam', 'location': 'Sydney; Porto Alegre; Gold Coast', 'industry': 'Product Development, Software Development / Engineering', 'apply_link': 'https://stackoverflow.com/jobs/companies/pragmateam?c=KEeyy1hjI6DTPRE4&q=react'}, {'company': 'Night Market', 'location': 'New York; Los Angeles; Toronto', 'industry': 'Advertising Technology, Data & Analytics, Media', 'apply_link': 'https://stackoverflow.com/jobs/companies/night-market?c=ODry4n2QaXBorfwY&q=react'}, {'company': 'EVS llc', 'location': 'Westminster; Del Mar', 'industry': 'Inventory Management Software, Supply Chain Management Software, Warehouse Management Software (WMS)', 'apply_link': 'https://stackoverflow.com/jobs/companies/evs-llc?c=OA83Of1Loao4UtDq&q=react'}, {'company': 'Hubble Pte Ltd', 'location': 'Singapore', 'industry': '3D Models, Construction, Information Technology', 'apply_link': 'https://stackoverflow.com/jobs/companies/hubble-pte-ltd?c=OEw1V06PTVhZKYcE&q=react'}, {'company': 'Paradox Cat GmbH', 'location': 'Ingolstadt; München', 'industry': 'Automotive, Computer Graphics, Project Management', 'apply_link': 'https://stackoverflow.com/jobs/companies/paradox-cat-ltd?c=HVGSQCvPD9snKwlG&q=react'}, {'company': 'AMBOSS ', 'location': 'Köln; Berlin; New York', 'industry': 'Education Technology, Healthcare, Medical', 'apply_link': 'https:/
+... 생략
+```
 
 ## 4.5 Faster Scrapper
 
-<h3>🔸 py</h3>
+fake db 를 만들어주고, 검색결과를 저장한다.
 
-<h3>🔹 console</h3>
+이전에 검색한 결과가 있으면 fake db에서 찾아주고, 없으면 새로 검색하여 fake db에 넣어준다.
+
+<h3>🔸 main.py</h3>
+
+```py
+from flask import Flask, render_template, request, redirect
+from scrapper import get_companies
+
+app = Flask("SuperScrapper")
+
+# fake db
+db = {}
+
+@app.route("/")
+def home():
+  return render_template("potato.html")
+
+@app.route("/report")
+def report():
+  word = request.args.get('word')
+  if word: # word가 있는 경우 소문자로 변경
+    word = word.lower()
+    # db 에 있는지 확인
+    fromDb = db.get(word)
+    if fromDb:
+      comps = fromDb
+    else:
+      comps = get_companies(word)
+      db[word] = comps
+    print(jobs)
+  else: # 없는 경우 홈으로 redirect
+    return redirect("/")
+  return render_template("report.html",
+                         searchingBy=word,
+                         resultsNumber=len(comps)
+                        )
+
+app.run(host="0.0.0.0")
+```
+
+<h3>🔸 report.html</h3>
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Job Search</title>
+  </head>
+  <body>
+    <h1>Search Results</h1>
+    <h3>Found {{resultsNumber}} results for: {{searchingBy}}</h3>
+    </form>
+  </body>
+</html>
+```
+
+<h3>🔹 web</h3>
+
+![vuepress](../.vuepress/public/img/lecture/01/10.png)
 
 ## 4.6 Rendering Jobs!
 
-<h3>🔸 py</h3>
+flask `html`에서 `python`을 작성하기 위해서는 아래와 같이 하면 된다.
 
-<h3>🔹 console</h3>
+css grid를 활용하여 가져온 companies를 테이블 형식으로 뿌려주었다.
+
+<h3>🔸 main.py</h3>
+
+```py
+from flask import Flask, render_template, request, redirect
+from scrapper import get_companies
+
+app = Flask("SuperScrapper")
+
+# fake db
+db = {}
+
+@app.route("/")
+def home():
+  return render_template("potato.html")
+
+@app.route("/report")
+def report():
+  word = request.args.get('word')
+  if word: # word가 있는 경우 소문자로 변경
+    word = word.lower()
+    # db 에 있는지 확인
+    existingComps = db.get(word)
+    if existingComps:
+      comps = existingComps
+    else:
+      comps = get_companies(word)
+      db[word] = comps
+    print(comps)
+  else: # 없는 경우 홈으로 redirect
+    return redirect("/")
+  return render_template("report.html",
+                         searchingBy=word,
+                         resultsNumber=len(comps),
+                         comps=comps
+                        )
+
+app.run(host="0.0.0.0")
+```
+
+<h3>🔸 report.html</h3>
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Job Search</title>
+    <style>
+      section {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(4, 1fr);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Search Results</h1>
+    <h3>Found {{resultsNumber}} results for: {{searchingBy}}</h3>
+    <section>
+      <h4>company</h4>
+      <h4>location</h4>
+      <h4>industry</h4>
+      <h4>apply_link</h4>
+      {% for comp in comps%}
+        <span>{{comp.company}}</span>
+        <span>{{comp.location}}</span>
+        <span>{{comp.industry}}</span>
+        <a href="{{comp["apply_link"]}}">Apply</a>
+      {% endfor %}
+    </section>
+    </form>
+  </body>
+</html>
+```
+
+<h3>🔹 web</h3>
+
+![vuepress](../.vuepress/public/img/lecture/01/11.png)
 
 ## 4.7 Export Route
 
-<h3>🔸 py</h3>
+버튼을 만들어서 `csv`로 export 해보자.
 
-<h3>🔹 console</h3>
+<h3>🔸 main.py</h3>
+
+```py
+from flask import Flask, render_template, request, redirect
+from scrapper import get_companies
+
+app = Flask("SuperScrapper")
+
+# fake db
+db = {}
+
+@app.route("/")
+def home():
+  return render_template("potato.html")
+
+@app.route("/report")
+def report():
+  word = request.args.get('word')
+  if word: # word가 있는 경우 소문자로 변경
+    word = word.lower()
+    # db 에 있는지 확인
+    existingComps = db.get(word)
+    if existingComps:
+      comps = existingComps
+    else:
+      comps = get_companies(word)
+      db[word] = comps
+    print(comps)
+  else: # 없는 경우 홈으로 redirect
+    return redirect("/")
+  return render_template("report.html",
+                         searchingBy=word,
+                         resultsNumber=len(comps),
+                         comps=comps
+                        )
+
+@app.route("/export")
+def export():
+  # try exception 사용 (exception 발생하면 except로 감)
+  try:
+    word = request.args.get('word') # 검색어 없으면 에러
+    if not word:
+      raise Exception()
+    word = word.lower()
+    comps = db.get(word)
+    if not comps: #db에 없으면 에러
+      raise Exception()
+    return f"Genearte CSV for {word}"
+  except:
+    return redirect('/')
+    
+app.run(host="0.0.0.0")
+```
+
+<h3>🔸 report.html</h3>
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Job Search</title>
+    <style>
+      section {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(4, 1fr);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Search Results</h1>
+    <h3>Found {{resultsNumber}} results for: {{searchingBy}}</h3>
+    <a href="/export?word={{searchingBy}}">Export to CSV</a>
+    <section>
+      <h4>company</h4>
+      <h4>location</h4>
+      <h4>industry</h4>
+      <h4>apply_link</h4>
+      {% for comp in comps%}
+        <span>{{comp.company}}</span>
+        <span>{{comp.location}}</span>
+        <span>{{comp.industry}}</span>
+        <a href="{{comp["apply_link"]}}">Apply</a>
+      {% endfor %}
+    </section>
+    </form>
+  </body>
+</html>
+```
+
+<h3>🔹 web</h3>
+
+![vuepress](../.vuepress/public/img/lecture/01/12.png)
+![vuepress](../.vuepress/public/img/lecture/01/13.png)
 
 ## 4.8 File Download
 
-<h3>🔸 py</h3>
+이전 [scrapper](https://replit.com/@HYUNGWONLEE/Python-scrapper#save.py) 에서 `save.py`를 가져온다.
 
-<h3>🔹 console</h3>
+`exporter.py`를 새로 만들어서 복붙해주자.
 
-## 4.9 Recap
+`csv`파일을 만들고 `send_file`을 사용하여 다운로드까지 해주자.
 
-<h3>🔸 py</h3>
+<h3>🔸 main.py</h3>
 
-<h3>🔹 console</h3>
+```py
+from flask import Flask, render_template, request, redirect, send_file
+from scrapper import get_companies
+from exporter import save_to_file_companies
 
-## 4.10 Conclusions
+app = Flask("SuperScrapper")
 
-<h3>🔸 py</h3>
+# fake db
+db = {}
 
-<h3>🔹 console</h3>
+@app.route("/")
+def home():
+  return render_template("potato.html")
+
+@app.route("/report")
+def report():
+  word = request.args.get('word')
+  if word: # word가 있는 경우 소문자로 변경
+    word = word.lower()
+    # db 에 있는지 확인
+    existingComps = db.get(word)
+    if existingComps:
+      comps = existingComps
+    else:
+      comps = get_companies(word)
+      db[word] = comps
+    print(comps)
+  else: # 없는 경우 홈으로 redirect
+    return redirect("/")
+  return render_template("report.html",
+                         searchingBy=word,
+                         resultsNumber=len(comps),
+                         comps=comps
+                        )
+
+@app.route("/export")
+def export():
+  # try exception 사용 (exception 발생하면 except로 감)
+  try:
+    word = request.args.get('word') # 검색어 없으면 에러
+    if not word:
+      raise Exception()
+    word = word.lower()
+    comps = db.get(word)
+    if not comps: #db에 없으면 에러
+      raise Exception()
+    save_to_file_companies(comps)
+    return send_file("companies.csv")
+  except:
+    return redirect('/')
+    
+app.run(host="0.0.0.0")
+```
+
+<h3>🔸 export.py</h3>
+
+```py
+import csv
+
+def save_to_file_companies(companies):
+  file = open("companies.csv", mode="w")
+  writer = csv.writer(file)
+  # 헤더줄 생성
+  writer.writerow(["company", "location", "industry", "apply_link"])
+  for company in companies:
+    # dict에서 values만 가져오면 dict_values가 type임
+    # 따라서 list로 cast 해준다
+    writer.writerow(list(company.values()))
+  return 
+```
+
+검색 후, `export` 해주면 파일이 다운로드 되는 걸 확인할 수 있다.
+
+<h3>🔹 csv</h3>
+
+![vuepress](../.vuepress/public/img/lecture/01/14.png)
 
 ## Reference
 
 [Pythone으로 웹 스크래퍼 만들기](https://nomadcoders.co/python-for-beginners/lobby)
-[python-scrapper-replit](https://replit.com/@HYUNGWONLEE/Python-scrapper)
 [Python library](https://docs.python.org/3/library/index.html)
+[python-scrapper-replit](https://replit.com/@HYUNGWONLEE/Python-scrapper)
+[python-super-scrapper-replit](https://replit.com/@HYUNGWONLEE/SuperScrapper)
