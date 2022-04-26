@@ -1,4 +1,4 @@
 node_modules
 docs/.vuepress/dist
-# deploy.sh
+deploy.sh
 package-lock.json
