@@ -557,7 +557,7 @@ k\u0004My new jobs":[null,""],"job feed link\u0004There are new jobs":[null,""],
                 </script></body>
 </html>
 ```
-<h3> 📌 <u>beautiful soup</u> 을 활용하여 필요한 정보만 가져오자</h3>
+<h3> 📌 <code>beautiful soup</code> 을 활용하여 필요한 정보만 가져오자</h3>
 
 :::tip BeautifulSoup
 `https://www.crummy.com/software/BeautifulSoup/bs4/doc/`
@@ -1411,7 +1411,7 @@ Scrapping SO: Page: 20
 
 ## 2.14 What is CSV
 
-<h3> CSV : Comma Separated Values</h3>
+<h3><code>CSV</code> : Comma Separated Values</h3>
 
 * vsCode 에서 `ExcelViewer` 플러그인을 설치한다.
 
@@ -1945,15 +1945,52 @@ taking off
 
 ## 4.0 Welcome to 2020 Update
 
-<h3>🔸 py</h3>
+<h3><code>Flask</code> : 파이썬으로 웹 사이트를 만들 수 있게 해주는 micro-framework</h3>
 
-<h3>🔹 console</h3>
+`Flask`를 활용하여 scrapper를 웹서버에 올릴 예정 !
 
 ## 4.1 Introduction to Flask
 
+<h3><code>replit</code> 패키지에서 <code>Flask</code>를 검색 후 install해준다.</h3>
+
 <h3>🔸 py</h3>
 
-<h3>🔹 console</h3>
+```py
+from flask import Flask
+
+app = Flask("SuperScrapper")
+
+app.run(host="0.0.0.0")
+```
+
+<h3>🔹 web</h3>
+
+![vuepress](../.vuepress/public/img/lecture/01/03.png)
+
+코드가 바뀔때마다 다시 `run`해준다.
+
+<h3>🔸 py</h3>
+
+```py
+from flask import Flask
+
+app = Flask("SuperScrapper")
+
+@app.route("/")
+def home():
+  return "Hello! Welcome to mi casa!"
+
+@app.route("/contact")
+def potato(): # 이름 달라도 됨
+  return "Contact me!"
+  
+app.run(host="0.0.0.0")
+```
+
+<h3>🔹 web</h3>
+
+![vuepress](../.vuepress/public/img/lecture/01/04.png)
+![vuepress](../.vuepress/public/img/lecture/01/05.png)
 
 ## 4.2 Dynamic URLs and Templates
 

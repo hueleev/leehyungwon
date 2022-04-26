@@ -33,9 +33,9 @@ jobs:
         run: |
           cd docs/.vuepress/dist
           git config --global user.email "hueleev@gmail.com"
-          git config --global user.name "leedamoo"
+          git config --global user.name "leehyungwon"
           git init
           git add -A
-          git commit -m 'deploy with vuepress'
+          git commit -m 'deploy with vuepress(action)'
           # 토큰정보를 바탕으로 gh-pages 브랜치에 push
           git push -f https://${ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY}.git master:gh-pages

@@ -18,7 +18,7 @@ cd docs/.vuepress/dist
 
 git init
 git add -A
-git commit -m 'board sample & deploy with vuepress'
+git commit -m 'deploy with vuepress(shell)'
 
 # if you are deploying to https://<USERNAME>.github.io
 git push -f https://${ACCESS_TOKEN}@github.com:hueleev/hueleev.github.io.git master:gh-pages
