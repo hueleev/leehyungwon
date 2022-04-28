@@ -255,6 +255,12 @@ mysql> select CEIL(rand() * 10);
 ![vuepress](../.vuepress/public/img/lecture/03/05.png)
 ![vuepress](../.vuepress/public/img/lecture/03/06.png)
 
+::: tip function 생성 안 되는 경우
+```sql
+SET GLOBAL  log_bin_trust_function_creators=ON;
+```
+:::
+
 ### 1. 한글자를 랜덤으로 반환하는 함수를 만들어보자.
 
 ```sql
@@ -533,7 +539,414 @@ rollback to savepoint sp2; --sp2 만 롤백
 commit; -- 적용 (sp1만 적용됨)
 ```
 
+## View
+
+::: tip View를 사용하는 이유
+
+* Security
+
+    보안을 위해서 `view`를 많이 쓴다. 테이블 테이터를 수정하지 못하도록, 사용자 접근 권한을 `view` 조회만 가능하도록 하는 경우가 있다.
+
+* Simplicity
+
+    복잡한 쿼리를 단순하게 해준다.
+
+* Performance
+
+    네트워크 트래픽이 줄어들고, 컴파일하는 시간도 줄어든다.
+
+:::
+
+### 생성
+
+생성 쿼리는 아래와 같고, 조회는 테이블 조회와 똑같이 `select`로 조회하면 된다.
+
+```sql
+create view v_Emp AS
+select e.*, d.dname from Emp e inner join Dept d on e.dept = d.id;
+```
+
+![vuepress](../.vuepress/public/img/lecture/03/08.png)
+
+### view schema 조회
+
+```sql
+mysql> select * from information_schema.views where table_schema = 'testdb';
++---------------+--------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+--------------+----------------+---------------+----------------------+----------------------+
+| TABLE_CATALOG | TABLE_SCHEMA | TABLE_NAME | VIEW_DEFINITION                                                                                                                                                                                    | CHECK_OPTION | IS_UPDATABLE | DEFINER        | SECURITY_TYPE | CHARACTER_SET_CLIENT | COLLATION_CONNECTION |
++---------------+--------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+--------------+----------------+---------------+----------------------+----------------------+
+| def           | testdb       | v_emp      | select `e`.`id` AS `id`,`e`.`ename` AS `ename`,`e`.`dept` AS `dept`,`e`.`salary` AS `salary`,`d`.`dname` AS `dname` from (`testdb`.`emp` `e` join `testdb`.`dept` `d` on((`e`.`dept` = `d`.`id`))) | NONE         | YES          | root@localhost | DEFINER       | utf8mb4              | utf8mb4_0900_ai_ci   |
++---------------+--------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+--------------+----------------+---------------+----------------------+----------------------+
+1 row in set (0.00 sec)
+```
+
+## Trigger
+
+<h3>특정 조건을 만족하면 저절로 실행된다.</h3>
+
+```sql
+DELIMITER //
+Create Trigger <trigger-name>
+    { BEFORE | AFTER } { INSERT | UPDATE | DELETE } -- 특정 작업 수행 전/후 (보통 후에 많이 함)
+    { PRECEDES | FOLLOWS } other-trigger-name -- 다른 트리거가 또 있는경우 PRECEDES: other타기전에 타라 / FOLLOWS: other타고 타라
+    on <table-name> FOR EACH ROW
+BEGIN
+    ... OLD.<col>   ... NEW.<col>; -- OLD: update이전값 / NEW: update이후값
+
+END //
+DELIMITER;
+```
+
+### 우선 기존 `Dept` 테이블에 직원 수인 `empcnt` 컬럼을 추가해주고, 현재 직원수로 `update` 처리해주자.
+
+```sql
+alter table Dept add column empcnt int not null default 0;
+update Dept d set empcnt = (select count(*) from Emp where dept = d.id);
+```
+
+### `Trigger` 를 적용해주자.
+
+```sql
+CREATE DEFINER = CURRENT_USER TRIGGER `testdb`.`emp_AFTER_INSERT` AFTER INSERT ON `emp` FOR EACH ROW
+BEGIN
+  update Dept set empcnt = empcnt + 1
+  where id = NEW.dept;
+END
+```
+
+![vuepress](../.vuepress/public/img/lecture/03/09.png)
+
+### `insert` 해보면 `Trigger`가 적용되어 `empcnt`가 늘어나는 걸 확인할 수 있다.
+
+```sql
+mysql> select * from Dept;
++----+-----+---------+---------------------+---------+--------+
+| id | pid | dname   | workdate            | captain | empcnt |
++----+-----+---------+---------------------+---------+--------+
+|  1 |   0 | 영업111 | 2022-04-27 16:58:13 |    NULL |      0 |
+|  2 |   0 | 개발부  | 2022-04-27 16:57:39 |    NULL |      0 |
+|  3 |   1 | 영업1팀 | 2022-04-28 10:23:20 |      66 |     62 |
+|  4 |   1 | 영업2팀 | 2022-04-28 10:23:20 |     198 |     47 |
+|  5 |   1 | 영업3팀 | 2022-04-28 13:52:15 |      76 |     48 |
+|  6 |   2 | 서버팀  | 2022-04-28 10:23:20 |    NULL |     55 |
+|  7 |   2 | 클라팀  | 2022-04-28 10:23:20 |     259 |     51 |
++----+-----+---------+---------------------+---------+--------+
+7 rows in set (0.01 sec)
+
+mysql> insert into Emp(ename, dept, salary) values ('SSS', 5, 200);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from Dept;
++----+-----+---------+---------------------+---------+--------+
+| id | pid | dname   | workdate            | captain | empcnt |
++----+-----+---------+---------------------+---------+--------+
+|  1 |   0 | 영업111 | 2022-04-27 16:58:13 |    NULL |      0 |
+|  2 |   0 | 개발부  | 2022-04-27 16:57:39 |    NULL |      0 |
+|  3 |   1 | 영업1팀 | 2022-04-28 10:23:20 |      66 |     62 |
+|  4 |   1 | 영업2팀 | 2022-04-28 10:23:20 |     198 |     47 |
+|  5 |   1 | 영업3팀 | 2022-04-28 13:53:11 |      76 |     49 |
+|  6 |   2 | 서버팀  | 2022-04-28 10:23:20 |    NULL |     55 |
+|  7 |   2 | 클라팀  | 2022-04-28 10:23:20 |     259 |     51 |
++----+-----+---------+---------------------+---------+--------+
+7 rows in set (0.00 sec)
+```
+
+### `delete`에도 `empcnt`가 -1 되도록 trigger를 걸어준다.
+
+```sql
+CREATE DEFINER = CURRENT_USER TRIGGER `testdb`.`emp_AFTER_DELETE` AFTER DELETE ON `emp` FOR EACH ROW
+BEGIN
+ update Dept set empcnt = empcnt - 1
+  where id = OLD.dept; -- 새로 들어오는 NEW가 없으므로 OLD로 써준다.
+END
+```
+
+### `update`에도 걸어준다. `dept`-속한 부서가 수정되는 경우도 `empcnt`를 변경해줘야한다.
+
+```sql
+CREATE DEFINER=`root`@`localhost` TRIGGER `emp_AFTER_UPDATE` AFTER UPDATE ON `emp` FOR EACH ROW BEGIN
+  IF OLD.dept != NEW.dept THEN -- 부서가 변경되는 경우
+    update Dept set empcnt = empcnt - 1
+      where id = OLD.dept;
+    
+    update Dept set empcnt = empcnt + 1
+      where id = NEW.dept;
+  END IF;
+END
+```
+
+## UNION
+
+### `UNION`은 중복을 빼고, `UNION ALL`은 중복도 포함한다.
+
+```sql
+select * from subject where classroom < 3
+{ UNION | UNION ALL}
+select * from subject where classroom < 5
+```
+
+## @rownum
+
+순번을 매기고 싶을 때 사용한다.
+
+```sql
+mysql> select s.*, (@rownum := @rownum + 1)from Emp s, (select @rownum := 0) rn;
++-----+--------+------+--------+--------------------------+
+| id  | ename  | dept | salary | (@rownum := @rownum + 1) |
++-----+--------+------+--------+--------------------------+
+|   1 | 전차종 |    7 |    100 |                        1 |
+|   2 | 마민종 |    4 |    800 |                        2 |
+|   3 | 조자라 |    6 |    500 |                        3 |
+|   4 | 최호순 |    5 |    400 |                        4 |
+|   5 | 조세호 |    6 |    200 |                        5 |
+|   6 | 최국세 |    5 |    200 |                        6 |
+|   7 | 조차마 |    7 |    500 |                        7 |
+|   8 | 방세지 |    3 |    700 |                        8 |
+|   9 | 전결은 |    3 |    100 |                        9 |
+|  10 | 이세사 |    6 |    800 |                       10 |
+|  11 | 천바가 |    5 |    300 |                       11 |
+|  12 | 유혜종 |    6 |    400 |                       12 |
+|  13 | 천가호 |    3 |    100 |                       13 |
+|  14 | 유차순 |    5 |    300 |                       14 |
+|  15 | 유가종 |    6 |    100 |                       15 |
+|  16 | 전사바 |    4 |    400 |                       16 |
+|  17 | 김찬아 |    3 |    100 |                       17 |
+|  18 | 원가찬 |    4 |    300 |                       18 |
+|  19 | 마아결 |    3 |    200 |                       19 |
+...생략
+```
+
+## Procudure - OUT 출력 | into 사용
+
+### 프로시저 작업 후, 변수를 출력하고 싶을 때 `OUT`을 사용한다.
+
+```sql
+CREATE PROCEDURE `sp_emp_del`(_empid int, OUT _empcnt int) -- 삭제 후, empcnt 가져오고 싶을떄
+BEGIN
+  declare v_deptid tinyint;
+  select dept into v_deptid from Emp where id = _empid; -- into: dept를 v_deptid 변수에 입력
+  
+  delete from Emp where id = _empid;
+  
+  select empcnt into _empcnt from Dept where id = v_deptid; 
+END
+```
+
+```sql
+call sp_emp_del(6, @empcnt); -- empcnt를 받아온다.
+select @empcnt;
+```
+
+::: tip Leave
+`Leave`를 사용하면 프로시저 도중 중단 가능하다.
+```sql
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_emp_range`(_sid int, _eid int)
+prox:BEGIN
+    ... 생략
+    leave prox; -- 조건 만족 못했을 때, 취소시키고 싶은 경우
+END
+```
+:::
+
+## Prepare
+
+### String으로 받아온 값 쿼리에 사용하기
+
+```sql
+CREATE PROCEDURE `sp_count`(_table varchar(31))
+BEGIN
+  SET @sql = CONCAT('select count(*) cnt from ', _table);
+  
+  PREPARE myQuery from @sql;
+  EXECUTE myQuery;
+  DEALLOCATE PREPARE myQuery; -- 메모리에서 삭제
+END
+```
+
+## Cursor
+
+### row를 선택하는 개념이라고 보면 된다. 
+
+![vuepress](../.vuepress/public/img/lecture/03/10.png)
+
+```sql
+Declare <cursor-name> CURSOR FOR
+    select ....
+Declare Continue Handler
+    For Not Found SET <end-flag> := True;
+
+OPEN <cursor-name>;
+
+    <cursor-loop-var>: LOOP
+        Fetch <cursor-name> into <var-name>, ...;
+        IF <end-flag> THEN
+            LEAVE <cursor-loop-var>;
+        END IF;
+        ...
+    END LOOP <cursor-loop-var>;
+
+CLOSE <cursor-name>;
+```
+
+## Exception Handling
+
+```sql
+START TRANSACTION
+
+DECLARE {EXIT | CONTINUE} HANDLER FOR [ SQLEXCEPTION | <code> ]
+
+BEGIN
+    SHOW ERRORS;
+    SELECT '에러발생' as 'Result';
+    ROLLBACK;
+END;
+
+-- 위에서 CONTINUE 라고 선언했다면, 오류 발생해도 아래 계속 수행!
+
+COMMIT;
+```
+
+### 위 나온 내용을 전부 사용한 Procedure 예제
+
+```sql
+CREATE PROCEDURE `sp_emp_range`(_sid int, _eid int)
+prox:BEGIN
+  declare v_sid int default _sid;
+  declare v_eid int default _eid;
+  
+  -- cursor 임시 변수
+  declare v_empid int;
+  declare v_ename varchar(31);
+  declare v_dname varchar(31);
+  
+  -- cursor 종료 flag
+  Declare _done boolean default False;
+  
+  Declare _cur CURSOR FOR
+    select id, ename, dname  from v_Emp where id between v_sid and v_eid;
+    
+  Declare Continue Handler
+    For Not Found SET _done := True;
+    
+    
+  -- error handling
+  DECLARE EXIT HANDLER FOR SQLEXCEPTION
+  BEGIN
+    SHOW ERRORS;
+    SELECT '에러발생' as 'Result';
+  END;
+  
+  IF _sid < 0 AND _eid < 0 THEN
+    leave prox;
+  END IF;
+  
+  IF _sid > _eid THEN
+    set v_sid = _eid;
+    set v_eid = _sid;
+  END IF;
+  
+  -- 임시테이블 존재하는 경우 drop
+  drop temporary table IF Exists Tmp;
+  
+  -- 임시 테이블 생성
+  create temporary table Tmp (
+    empid int,
+    edname varchar(63)
+  );
+
+  OPEN _cur; -- 커서 열기
+  
+    cur_loop: LOOP
+      Fetch _cur into v_empid, v_ename, v_dname;
+      IF _done THEN
+        LEAVE cur_loop;
+      END IF;
+      
+      insert into Tmp(empid, edname) values(v_empid, concat(v_ename, '-', ifnull(v_dname,'소속팀없음')));
+      
+    END LOOP cur_loop;
+  
+  CLOSE _cur; -- 커서 닫기
+  
+  select * from Tmp;
+  
+END
+```
+
+```sql
+mysql> call sp_emp_range(5,1);
++-------+----------------+
+| empid | edname         |
++-------+----------------+
+|     1 | 전차종-클라팀  |
+|     2 | 마민종-영업2팀 |
+|     3 | 조자라-서버팀  |
+|     4 | 최호순-영업3팀 |
+|     5 | 조세호-서버팀  |
++-------+----------------+
+5 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+```
+
+## WITH CTE
+
+::: tip WITH -  CTE
+
+메모리에 임시 결과 셋으로 올려놓고 재사용. (cf. View, Function)
+
+* 장점
+    순서에 의한 절차적으로 작성 -> 작성하기 쉽고 읽기 쉽다.
+
+```sql
+WITH [RECURSIVE]
+    cte_name [(colr_name [, col_name] ...)] AS (subquery)
+    [, cte_name [(colr_name [, col_name] ...)] AS (subquery)]
+select * from cte_name;
+```
+
+MY SQL의 CTE에는 아래와 같이 2가지 CTE를 제공하고 있다.
+
+<b>1. Common Table Expressions (기본 CTE)</b> - 순차적으로 쿼리 작성 가능
+<b>2. Recursive Common Table Expressions (재귀 CTE)</b> - 스스로 추가적인 Row를 생성할 수 있다.
+:::
+
+```sql
+WITH AvgSal AS ( -- 평균 급여
+  select d.dname, avg(e.salary) avgsal
+  from Dept d inner join Emp e on d.id = e.dept
+  group by d.id
+),
+MaxAvgSal AS ( -- 최고
+  select * from AvgSal order by avgSal desc limit 1
+),
+MinAvgSal AS ( -- 최소
+  select * from AvgSal order by avgSal asc limit 1
+),
+SumUp AS ( -- union
+  select '최고' as gb, m1.* from MaxAvgSal m1
+  UNION
+  select '최저' as gb, m2.* from MinAvgSal m2
+)
+select * from Sumup
+UNION
+select '', '평균급여차액', format((max(avgsal) - min(avgsal))* 10000, 0) from SumUp;  -- 차액
+
++------+--------------+----------+
+| gb   | dname        | avgsal   |
++------+--------------+----------+
+| 최고 | 서버팀       | 538.1818 |
+| 최저 | 영업3팀      | 450.0000 |
+|      | 평균급여차액 | 881,818  |
++------+--------------+----------+
+3 rows in set (0.00 sec)
+```
+
+## ... Progress 🤐 --- 13분
+
 ## Reference
 
 [inflearn_@시코 - MySQL 제대로 배우기](https://www.inflearn.com/course/mysql-%EC%A0%9C%EB%8C%80%EB%A1%9C/)
+[강의 github](https://github.com/indiflex/refs/blob/main/mysql/MySQL_Make_SampleData)
+[강의 slide](https://docs.google.com/presentation/d/1fhtpdjbIPi0fvZbY9TlUKJRqIeqoIsJIzeWCaRktwBI/edit#slide=id.p)
 [mysql 사용자](https://technote.kr/32)
