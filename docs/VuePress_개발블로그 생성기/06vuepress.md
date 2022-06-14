@@ -66,7 +66,7 @@ export default {
         };
         (function() {
             var d = window.document, s = d.createElement('script');
-            s.src = 'https://leedamoo.disqus.com/embed.js';
+            s.src = 'https://[웹사이트명].disqus.com/embed.js';
             s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
         })();

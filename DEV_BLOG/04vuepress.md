@@ -64,7 +64,7 @@ jobs:
         run: |
           cd docs/.vuepress/dist
           git config --global user.email "hueleev@gmail.com"
-          git config --global user.name "leedamoo"
+          git config --global user.name "leehyungwon"
           git init
           git add -A
           git commit -m 'deploy with vuepress'

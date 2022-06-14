@@ -17,9 +17,7 @@ meta:
 
 ## git repository 생성
 
-![vuepress](../.vuepress/public/img/vuepress/01/1.png)
-
-난 이미 있는 만든 블로그라 저렇게 빨간색이 뜨긴 하지만.. 저 이름이 나중에 블로그의 domain에 포함될 것이다.
+프로젝트 이름이 나중에 블로그의 domain에 포함될 것이다.
 나는 추후에 뒤에 디렉토리명이 붙는게 싫어서 뺐다.
 **만약 url뒤에 디렉토리명이 붙는 걸 원치 않으면 디렉토리명을 `hueleev.github.io` 만 입력하면 된다.**
 
@@ -32,7 +30,7 @@ mkdir 디렉토리 && cd 디렉토리
 ```
 
 ```bash
-git clone https://github.com/hueleev/leedamoo.git
+git clone https://github.com/hueleev/hueleev.github.io.git
 ```
 
 <br/>

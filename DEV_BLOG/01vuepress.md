@@ -32,7 +32,7 @@ mkdir 디렉토리 && cd 디렉토리
 ```
 
 ```bash
-git clone https://github.com/hueleev/leedamoo.git
+git clone https://github.com/hueleev/hueleev.github.io.git
 ```
 
 <br/>

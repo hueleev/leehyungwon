@@ -64,7 +64,7 @@ module.export = {
 
 <br/>
 
-📌 **배포 이후, 구글 서치 콘솔에 가서 sitemap 제출란에 `https://hueleev.github.io/leedamoo/sitemap.xml` 로 등록하면 된다.**
+📌 **배포 이후, 구글 서치 콘솔에 가서 sitemap 제출란에 `https://hueleev.github.io/{REPO}/sitemap.xml` 로 등록하면 된다.**
 
 ## Robots.txt
 
@@ -75,7 +75,7 @@ module.export = {
 ```jsx
 User-agent: *
 Allow: /
-Sitemap: https://kyounghwan01.github.io/blog/sitemap.xml
+Sitemap: https://hueleev.github.io/{REPO}/sitemap.xml
 ```
 
 ## Google Analytics (구글 애널리틱스)
@@ -132,8 +132,8 @@ head: [
 ```jsx
 // .vuepress/config.js
 module.exports = {
-    title: "leedamoo",
-    description: "leedamoo 개발블로그 입니다.",
+    title: "leehyungwon",
+    description: "leehyungwon 개발블로그 입니다.",
     head: [
       ['script', { "data-ad-client": "ca-pub-XXXXX", async: true, src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' }],
 		]

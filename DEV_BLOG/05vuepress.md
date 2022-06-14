@@ -132,8 +132,8 @@ head: [
 ```jsx
 // .vuepress/config.js
 module.exports = {
-    title: "leedamoo",
-    description: "leedamoo 개발블로그 입니다.",
+    title: "hueleev",
+    description: "hueleev 개발블로그 입니다.",
     head: [
       ['script', { "data-ad-client": "ca-pub-XXXXX", async: true, src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' }],
 		]

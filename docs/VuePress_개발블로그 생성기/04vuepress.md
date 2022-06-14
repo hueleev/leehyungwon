@@ -64,7 +64,7 @@ jobs:
         run: |
           cd docs/.vuepress/dist
           git config --global user.email "hueleev@gmail.com"
-          git config --global user.name "leedamoo"
+          git config --global user.name "leehyunwon"
           git init
           git add -A
           git commit -m 'deploy with vuepress'
@@ -118,6 +118,7 @@ git pull
 
 📌 **이제부터 `master` 에 `push`할때마다 블로그가 바로 배포되는 것을 확인할 수 있다.**
 
+그러면 이전에 작업한 `deploy.sh`을 굳이 실행할 필요없이 master에서 push 만 하면 프로젝트가 저절로 deploy된다.
 해당 repository 에 Actions 에서 상태를 확인할 수 있다.
 
 ![vuepress](../.vuepress/public/img/vuepress/04/8.png)
