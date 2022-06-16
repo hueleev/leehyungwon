@@ -1,7 +1,7 @@
 ---
 title: 06. vuepress 댓글 적용하기 | DISQUS
 meta:
-  - name: description TEst
+  - name: description
     content:  vuepress 댓글 적용하기
   - name: keywords
     content: vuepress 개발블로그 댓글 DISQUS
