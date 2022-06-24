@@ -1427,7 +1427,7 @@ select '급여합계',
 from Emp
 UNION
 select '최소급여',    
-  format(min(IF(dept = 3, salary, ~0)) * 10000, 0), -- ~0: integer의 최대값
+  format(min(IF(dept = 3, salary, ~0)) * 10000, 0), -- ~0: integer의 최댓값
   format(min(IF(dept = 4, salary, ~0)) * 10000, 0),
   format(min(IF(dept = 5, salary, ~0)) * 10000, 0),
   format(min(IF(dept = 6, salary, ~0)) * 10000, 0),
