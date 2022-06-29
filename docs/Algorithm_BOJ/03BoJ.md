@@ -369,6 +369,99 @@ class Student {
     }
 }
 ```
+
+## [10989. 수 정렬하기 3](http://boj.kr/10989)
+
+<h3>🔒 문제</h3>
+
+N개의 수가 주어졌을 때, 이를 오름차순으로 정렬하는 프로그램을 작성하시오.
+
+<h3>📢 입력</h3>
+
+* 첫째 줄에 수의 개수 N(1 ≤ N ≤ 10,000,000)이 주어진다. 둘째 줄부터 N개의 줄에는 수가 주어진다. 이 수는 10,000보다 작거나 같은 자연수이다.
+
+<h3>📢 출력</h3>
+ 
+* 첫째 줄부터 N개의 줄에 오름차순으로 정렬한 결과를 한 줄에 하나씩 출력한다.
+
+<h3>📢 입출력 예</h3>
+
+| 예제 입력 1 | 예제 출력 1 |
+| --- | --- |
+| 10<br/>5<br/>2<br/>3<br/>1<br/>4<br/>2<br/>3<br/>5<br/>1<br/>7 | 1<br/>1<br/>2<br/>2<br/>3<br/>3<br/>4<br/>5<br/>5<br/>7 |
+
+<h3>🔐</h3>
+
+메모리 초과가 계속 떴다 ㅠ 메모리 조심! StringBuilder 를 사용하자.
+또 이런 방식으로 푸는 사람도 있네.. [Counting Sort](https://st-lab.tistory.com/104)는 또 모야.. 정말 어렵다 어려워... 
+[Counting Sort 풀이](https://velog.io/@lifeisbeautiful/Java-%EB%B0%B1%EC%A4%80-10989%EB%B2%88-%EC%88%98-%EC%A0%95%EB%A0%AC%ED%95%98%EA%B8%B03-%EC%9E%90%EB%B0%94)
+
+<h3>🔑 풀이</h3>
+
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br= new BufferedReader((new InputStreamReader(System.in)));
+        int n = Integer.parseInt(br.readLine());
+
+        int[] arr = new int[n];
+
+        for (int i=0; i<n; i++) {
+            arr[i] = Integer.parseInt(br.readLine());
+        }
+
+        Arrays.sort(arr);
+
+        StringBuilder ans = new StringBuilder();
+        for (int value : arr) {
+            ans.append(value).append("\n");
+        }
+        System.out.println(ans);
+    }
+}
+```
+
+<!-- ## [11652. 카드](http://boj.kr/11652)
+
+<h3>🔒 문제</h3>
+
+준규는 숫자 카드 N장을 가지고 있다. 숫자 카드에는 정수가 하나 적혀있는데, 적혀있는 수는 -262보다 크거나 같고, 262보다 작거나 같다.
+
+준규가 가지고 있는 카드가 주어졌을 때, 가장 많이 가지고 있는 정수를 구하는 프로그램을 작성하시오. 만약, 가장 많이 가지고 있는 정수가 여러 가지라면, 작은 것을 출력한다.
+
+<h3>📢 입력</h3>
+
+* 첫째 줄에 준규가 가지고 있는 숫자 카드의 개수 N (1 ≤ N ≤ 100,000)이 주어진다. 둘째 줄부터 N개 줄에는 숫자 카드에 적혀있는 정수가 주어진다.
+
+<h3>📢 출력</h3>
+ 
+* 첫째 줄에 준규가 가장 많이 가지고 있는 정수를 출력한다.
+
+<h3>📢 입출력 예</h3>
+
+| 예제 입력 1 | 예제 출력 1 |
+| --- | --- |
+| 5<br/>1<br/>2<br/>1<br/>2<br/>1 | 1 |
+
+| 예제 입력 2 | 예제 출력 2 |
+| --- | --- |
+| 6<br/>1<br/>2<br/>1<br/>2<br/>1<br/>2 | 1 |
+
+<h3>🔐</h3>
+
+
+<h3>🔑 풀이</h3>
+
+```java
+
+``` -->
+
 <!--
 ## [문제번호. 제목](http://boj.kr/문제번호)
 
