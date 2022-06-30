@@ -427,11 +427,11 @@ public class Main {
 }
 ```
 
-<!-- ## [11652. 카드](http://boj.kr/11652)
+## [11652. 카드](http://boj.kr/11652)
 
 <h3>🔒 문제</h3>
 
-준규는 숫자 카드 N장을 가지고 있다. 숫자 카드에는 정수가 하나 적혀있는데, 적혀있는 수는 -262보다 크거나 같고, 262보다 작거나 같다.
+준규는 숫자 카드 N장을 가지고 있다. 숫자 카드에는 정수가 하나 적혀있는데, 적혀있는 수는 $-2^62$보다 크거나 같고, $2^62$보다 작거나 같다.
 
 준규가 가지고 있는 카드가 주어졌을 때, 가장 많이 가지고 있는 정수를 구하는 프로그램을 작성하시오. 만약, 가장 많이 가지고 있는 정수가 여러 가지라면, 작은 것을 출력한다.
 
@@ -455,12 +455,54 @@ public class Main {
 
 <h3>🔐</h3>
 
+`map.getOrDefault(input, 0)` 이거 처음 본다! key값이 존재하면 있는 값을 없으면 defaultValue를 두번째 파람에 넣어주면 된다.
 
 <h3>🔑 풀이</h3>
 
 ```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 
-``` -->
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br= new BufferedReader((new InputStreamReader(System.in)));
+        int n = Integer.parseInt(br.readLine());
+
+        HashMap<Long, Integer> map = new HashMap<>();
+
+        for (int i=0; i<n; i++) {
+            long input = Long.parseLong(br.readLine());
+            map.put(input, map.getOrDefault(input, 0) + 1);
+        }
+
+        Iterator<Long> keys = map.keySet().iterator();
+        List<Long> answerList = new ArrayList<>();
+        long value = 0;
+
+        while (keys.hasNext()) {
+            long key = keys.next();
+            if (value == 0) {
+                value = map.get(key);
+                answerList.add(key);
+                continue;
+            }
+
+            if (value <= map.get(key)) {
+                if (value != map.get(key)) {
+                    value = map.get(key);
+                    answerList.clear();
+                }
+                answerList.add(key);
+            }
+        }
+
+        System.out.println(Collections.min(answerList));
+    }
+}
+```
 
 <!--
 ## [문제번호. 제목](http://boj.kr/문제번호)
