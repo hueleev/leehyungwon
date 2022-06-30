@@ -1510,7 +1510,7 @@ Informatica for Google
 
 마지막으로 코드 정리를 하면 아래와 같이 되며, csv 파일 두개가 생성되는 것을 확인할 수 있다.
 
- [leehyungwon_python_scrapper_replit](https://replit.com/@HYUNGWONLEE/Python-scrapper)
+ [python_scrapper_replit](https://replit.com/@HYUNGWONLEE/Python-scrapper)
 
 <h3>🔸 main.py</h3>
 

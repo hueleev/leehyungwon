@@ -1,6 +1,6 @@
 module.exports = {
-    title: "leehyungwon",
-    description: "leehyungwon 개발블로그 입니다.",
+    title: "nowgnuyheel",
+    description: "nowgnuyheel 개발블로그 입니다.",
     locales: {
       '/': { lang: 'ko-KR' }
     },

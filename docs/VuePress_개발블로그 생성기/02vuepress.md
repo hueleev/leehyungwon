@@ -25,7 +25,7 @@ npm run docs:build
 
 ```jsx
 module.exports = {
-    title: "leehyungwon",
+    title: "nowgnuyheel",
     description: "desc",
     themeConfig: {
       nav: [{ text: "Github", link: "https://github.com/hueleev" }], // github주소

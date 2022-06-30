@@ -9,11 +9,11 @@ meta:
 
 <img src="./.vuepress/public/img/avatar.png" width="300" height="300" style="border-radius: 50%; display: block; margin: 0 auto;">
 
-### `author` leehyungwon
+<!-- ### `author` nowgnuyheel -->
 
-### `github` [Github](https://github.com/hueleev)
+<!-- ### `github` [Github](https://github.com/hueleev) -->
 
-<br/>
+<!-- <br/> -->
 
 ## 💌 Contact
 

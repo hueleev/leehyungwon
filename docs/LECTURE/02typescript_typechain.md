@@ -431,4 +431,4 @@ export {};
 ## Reference
 
 [Typescript로 블록체인 만들기](https://nomadcoders.co/typescript-for-beginners)
-[github_leehyungwon](https://github.com/hueleev/DONE__typechain)
+[github](https://github.com/hueleev/DONE__typechain)
