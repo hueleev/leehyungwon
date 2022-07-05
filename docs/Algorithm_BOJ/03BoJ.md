@@ -533,8 +533,6 @@ public class Main {
 <h3>🔑 풀이</h3>
 
 ```java
-package algorithmTest;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
