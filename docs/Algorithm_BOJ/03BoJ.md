@@ -504,6 +504,62 @@ public class Main {
 }
 ```
 
+## [11004. K번째 수](http://boj.kr/11004)
+
+<h3>🔒 문제</h3>
+
+수 N개 $A_1$, $A_2$, ..., $A_N$이 주어진다. A를 오름차순 정렬했을 때, 앞에서부터 K번째 있는 수를 구하는 프로그램을 작성하시오.
+
+<h3>📢 입력</h3>
+
+* 첫째 줄에 N(1 ≤ N ≤ 5,000,000)과 K (1 ≤ K ≤ N)이 주어진다.
+
+* 둘째에는 $A_1$, $A_2$, ..., $A_N$이 주어진다. ($-10^9$ ≤ $A_i$ ≤ $10^9$)
+
+<h3>📢 출력</h3>
+ 
+* A를 정렬했을 때, 앞에서부터 K번째 있는 수를 출력한다.
+
+<h3>📢 입출력 예</h3>
+
+| 예제 입력 1 | 예제 출력 1 |
+| --- | --- |
+| 5 2<br/>4 1 2 3 5 | 2 |
+
+<h3>🔐</h3>
+
+`StringTokenizer`를 사용하면 굳이 String을 따로 split할 필요가 없다.
+
+<h3>🔑 풀이</h3>
+
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br= new BufferedReader((new InputStreamReader(System.in)));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int n = Integer.parseInt(st.nextToken());
+        int k = Integer.parseInt(st.nextToken());
+        List<Long> arr = new ArrayList<>();
+
+        st = new StringTokenizer(br.readLine());
+        for (int i=0; i<n; i++ ) {
+            arr.add(Long.parseLong(st.nextToken()));
+        }
+
+        Collections.sort(arr);
+
+        System.out.println(arr.get(k-1));
+    }
+}
+```
+
 <!--
 ## [문제번호. 제목](http://boj.kr/문제번호)
 
