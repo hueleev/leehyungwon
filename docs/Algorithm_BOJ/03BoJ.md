@@ -560,6 +560,89 @@ public class Main {
 }
 ```
 
+## [10828. 스택](http://boj.kr/10828)
+
+<h3>🔒 문제</h3>
+
+정수를 저장하는 스택을 구현한 다음, 입력으로 주어지는 명령을 처리하는 프로그램을 작성하시오.
+
+명령은 총 다섯 가지이다.
+
+* push X: 정수 X를 스택에 넣는 연산이다.
+* pop: 스택에서 가장 위에 있는 정수를 빼고, 그 수를 출력한다. 만약 스택에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+* size: 스택에 들어있는 정수의 개수를 출력한다.
+* empty: 스택이 비어있으면 1, 아니면 0을 출력한다.
+* top: 스택의 가장 위에 있는 정수를 출력한다. 만약 스택에 들어있는 정수가 없는 경우에는 -1을 출력한다.
+
+
+<h3>📢 입력</h3>
+
+* 첫째 줄에 주어지는 명령의 수 N (1 ≤ N ≤ 10,000)이 주어진다. 둘째 줄부터 N개의 줄에는 명령이 하나씩 주어진다. 주어지는 정수는 1보다 크거나 같고, 100,000보다 작거나 같다. 문제에 나와있지 않은 명령이 주어지는 경우는 없다.
+
+<h3>📢 출력</h3>
+ 
+* 출력해야하는 명령이 주어질 때마다, 한 줄에 하나씩 출력한다.
+
+<h3>📢 입출력 예</h3>
+
+| 예제 입력 1 | 예제 출력 1 |
+| --- | --- |
+| 14<br/>push 1<br/>push 2<br/>top<br/>size<br/>empty<br/>pop<br/>pop<br/>pop<br/>size<br/>empty<br/>pop<br/>push 3<br/>empty<br/>top | 2<br/>2<br/>0<br/>2<br/>1<br/>-1<br/>0<br/>1<br/>-1<br/>0<br/>3 |
+
+
+| 예제 입력 2 | 예제 출력 2 |
+| --- | --- |
+| 7<br/>pop<br/>top<br/>push 123<br/>top<br/>pop<br/>top<br/>pop | -1<br/>-1<br/>123<br/>123<br/>-1<br/>-1 |
+
+<h3>🔑 풀이</h3>
+
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br= new BufferedReader((new InputStreamReader(System.in)));
+        int num = Integer.parseInt(br.readLine());
+
+        Stack<Integer> stack = new Stack<>();
+        StringBuilder sb = new StringBuilder();
+
+        for (int i=0; i<num; i++ ) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            String cmd = st.nextToken();
+            int append = 0;
+            switch (cmd) {
+                case "push":
+                    stack.push(Integer.parseInt(st.nextToken()));
+                    break;
+                case "pop":
+                    append = stack.size() == 0 ? -1 : stack.pop();
+                    sb.append(append).append("\n");
+                    break;
+                case "size":
+                    sb.append(stack.size()).append("\n");
+                    break;
+                case "empty":
+                    sb.append(stack.empty() ? 1 : 0).append("\n");
+                    break;
+                case "top":
+                    append = stack.size() == 0 ? -1 : stack.peek();
+                    sb.append(append).append("\n");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        System.out.println(sb);
+    }
+}
+```
+
 <!--
 ## [문제번호. 제목](http://boj.kr/문제번호)
 
