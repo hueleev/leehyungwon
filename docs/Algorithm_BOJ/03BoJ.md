@@ -1,10 +1,10 @@
 ---
-title: 03. 백준 문제 모음 | Dynamic Programming | JAVA | BOJ
+title: 03. 백준 문제 모음 | 알고리즘 모음 | JAVA | BOJ
 meta:
   - name: description
-    content: 백준 동적계획법 Dynamic Programming BOJ JAVA
+    content: 백준 동적계획법 Algorithm BOJ JAVA
   - name: keywords
-    content: 백준 동적계획법 Dynamic Programming BOJ JAVA
+    content: 백준 동적계획법 Algorithm BOJ JAVA
 ---
 
 # 02. 백준 문제 모음 | Dynamic Programming | JAVA | BOJ
