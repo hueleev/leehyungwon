@@ -771,13 +771,40 @@ public class Main {
 <h3>🔑 풀이</h3>
 
 ```java
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt(); 
+    public static void main(String[] args) throws IOException {
+        BufferedReader br= new BufferedReader((new InputStreamReader(System.in)));
+        String input = br.readLine();
+        input = input.replaceAll("\\(\\)", "*"); // 괄호 치환의 경우, \\ 가 필요하다.
+
+        Stack<String> stack = new Stack<>();
+        int answer = 0;
+
+        for (int i=0; i<input.length(); i++) {
+            String ch = Character.toString(input.charAt(i));
+            switch (ch) {
+                case "(":
+                    stack.push("(");
+                    answer++;
+                    break;
+                case ")":
+                    stack.pop();
+                    break;
+                case "*":
+                    answer = answer + stack.size();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        System.out.println(answer);
     }
 }
 ```
