@@ -2,14 +2,14 @@
 title: 04. 더 맵게_힙 | 프로그래머스 (JAVA) | HEAP | QUEUE
 meta:
   - name: description
-    content: Java algorithm Programmers Heqp Queue 알고리즘 프로그래머스 더맵게 힙 큐
+    content: Java algorithm Programmers Heap Queue 알고리즘 프로그래머스 더맵게 힙 큐
   - name: keywords
-    content: Java algorithm Programmers Heqp Queue 알고리즘 프로그래머스 더맵게 힙 큐
+    content: Java algorithm Programmers Heap Queue 알고리즘 프로그래머스 더맵게 힙 큐
 ---
 
 # 04. 더 맵게_힙 | 프로그래머스 (JAVA) | HEAP | QUEUE
 
-## 🔒 문제
+## 🔒 [문제](https://programmers.co.kr/learn/courses/30/lessons/42626?language=java)
 
 매운 것을 좋아하는 Leo는 모든 음식의 스코빌 지수를 K 이상으로 만들고 싶습니다. 모든 음식의 스코빌 지수를 K 이상으로 만들기 위해 Leo는 스코빌 지수가 가장 낮은 두 개의 음식을 아래와 같이 특별한 방법으로 섞어 새로운 음식을 만듭니다.
 
@@ -114,7 +114,5 @@ public class Heap_001_Scoville {
 ### Reference
 
 ---
-
-[프로그래머스_더맵게](https://programmers.co.kr/learn/courses/30/lessons/42626?language=java)
 
 [Priority Queue](https://coding-factory.tistory.com/603)
