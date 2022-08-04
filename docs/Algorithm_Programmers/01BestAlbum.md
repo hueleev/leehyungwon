@@ -9,7 +9,7 @@ meta:
 
 # 01. 베스트앨범_해시 | 프로그래머스 (JAVA)
 
-## 🔒 문제
+## 🔒 [문제](https://programmers.co.kr/learn/courses/30/lessons/42579)
 스트리밍 사이트에서 <u>**장르 별로 가장 많이 재생된 노래를 두 개씩 모아 베스트 앨범을 출시하려 합니다.**</u> 노래는 고유 번호로 구분하며, 노래를 수록하는 기준은 다음과 같습니다.
 
 **📌 속한 노래가 많이 재생된 장르를 먼저 수록합니다.**
@@ -130,9 +130,3 @@ public class Hash_004_BestAlbum  {
 
 }
 ```
-
-### Reference
-
----
-
-[프로그래머스_베스트앨범](https://programmers.co.kr/learn/courses/30/lessons/42579)
