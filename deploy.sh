@@ -24,6 +24,6 @@ git commit -m 'deploy with vuepress(shell)'
 git push -f https://${ACCESS_TOKEN}@github.com:hueleev/hueleev.github.io.git master:gh-pages
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-# git push -f https://github.com/hueleev/huleev.github.io master:gh-pages
+# git push -f https://github.com/hueleev/huleev.github.io master:gh-pages ss
 
 cd -
